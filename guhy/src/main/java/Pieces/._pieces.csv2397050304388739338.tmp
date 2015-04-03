@@ -1,0 +1,7 @@
+#pieces;;;;
+;;;;
+id_piece;forme_nord;forme_est;forme_sud;forme_ouest
+0;1;2;3;4
+1;2;3;4;1
+2;3;4;1;2
+3;4;1;2;3
