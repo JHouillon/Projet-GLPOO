@@ -93,5 +93,8 @@ public class Menu extends JMenuBar{
 		    add(fichierMenu);
 		    add(editerMenu);
 		    add(diversMenu);
+		    
+		    
+		    //vgk,hgi_jtuidjruyehr
 	 }
 }
