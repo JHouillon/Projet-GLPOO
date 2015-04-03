@@ -23,6 +23,7 @@ public class Plateau {
 		
 		fenetre.setSize(1024, 720);
 		fenetre.setTitle("Eternity");		
+		//mtest
 		
 		pan.setBackground(Color.RED);
 		pan.add(text);
