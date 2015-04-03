@@ -1,4 +1,4 @@
-package Pieces;
+package Face;
 
 public class Face {
 	
