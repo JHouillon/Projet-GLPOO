@@ -14,19 +14,23 @@ public class Piece {
 	int S_face;
 	int E_face;
 	
-	int act_posx;
-	int act_posy;
+	int orientation;
+	
+	int posx;
+	int posy;
 	
 	
-	public Piece(int N, int O, int S, int E, int posx, int posy) {
+	public Piece(int N, int O, int S, int E) {
 		
 		this.N_face=N;
 		this.O_face=O;
 		this.S_face=S;
 		this.E_face=E;	
+		
+		this.orientation=0;
 				
-		this.act_posx=posx;
-		this.act_posy=posy;
+		this.posx=posx;
+		this.posy=posy;
 		
 	
 		

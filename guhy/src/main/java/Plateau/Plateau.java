@@ -8,20 +8,25 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import DAO.CsvRW;
 import Jeu.Menu;
 import Piece.Piece;
 
 public class Plateau {
 	
-	Piece [] pieces_tab;
+	Piece [] piecesTab;
+	
+	int nbCaseTotalTab=100;
 	
 	
 
 	public Plateau(String link) {
 		
-		Piece[] tab = null;
+		CsvRW ReaderCsv=new CsvRW(link);
 		
-		this.pieces_tab = tab;
+		Piece[] tab = ReaderCsv.findAllPieces();
+		
+		this.piecesTab = tab;
 	}
 
 	private static void ConfigurationFenetre() {
