@@ -16,6 +16,7 @@ public class Plateau {
 	private static void ConfigurationFenetre() {
 		JFrame fenetre = new JFrame();
 		
+		//coucou
 		Menu menu = new Menu();
 		
 		JPanel pan = new JPanel();
