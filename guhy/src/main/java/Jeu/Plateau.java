@@ -36,6 +36,7 @@ public class Plateau {
 		pan1.setBackground(Color.ORANGE);
 		pan1.add(text1);
 		
+		//coucou
 		fenetre.setJMenuBar(menu);
 		fenetre.getContentPane().add(pan, BorderLayout.EAST);
 		fenetre.getContentPane().add(pan1, BorderLayout.WEST);
