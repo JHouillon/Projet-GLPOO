@@ -3,9 +3,11 @@ package Pieces;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
+import Plateau.Plateau;
+
 public class Pieces {
 
-	public static void main(String[] args) throws Exception{
+	public static void main2(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new FileReader("src/main/java/Pieces/pieces.csv"));
 		String ligne = null;
 		while ((ligne = br.readLine()) != null){
@@ -22,5 +24,11 @@ public class Pieces {
 			}
 		}
 		br.close();
+	}
+	
+	public static void main(String[] args) {
+		
+		Plateau p=new Plateau("src/main/java/Pieces/pieces.csv");
+		
 	}
 }

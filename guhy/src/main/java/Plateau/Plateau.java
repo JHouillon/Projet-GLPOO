@@ -22,7 +22,10 @@ public class Plateau {
 
 	public Plateau(String link) {
 		
+		System.out.println("Création PLateau");
+		
 		CsvRW ReaderCsv=new CsvRW(link);
+		
 		
 		Piece[] tab = ReaderCsv.findAllPieces();
 		
