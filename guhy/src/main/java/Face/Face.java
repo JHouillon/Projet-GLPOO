@@ -15,7 +15,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import au.com.bytecode.opencsv.CSVReader;
 
 public class Face {
 	
