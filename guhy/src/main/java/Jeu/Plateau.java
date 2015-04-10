@@ -2,10 +2,18 @@ package Jeu;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.CubicCurve2D;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.GeneralPath;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -41,6 +49,7 @@ public class Plateau {
 		fenetre.setJMenuBar(menu);
 		fenetre.getContentPane().add(pan, BorderLayout.EAST);
 		fenetre.getContentPane().add(pan1, BorderLayout.WEST);
+		fenetre.getContentPane().add(new Zone());
 		fenetre.setLayout(new GridLayout(1,2));
 		fenetre.setVisible(true);
 	}
@@ -48,5 +57,11 @@ public class Plateau {
 	public static void main(String[] args){
 		ConfigurationFenetre();
 	}
+}
+
+class Zone extends JComponent {
+	   protected void paintComponent(Graphics g) {
+		   
+	   }   
 }
 
