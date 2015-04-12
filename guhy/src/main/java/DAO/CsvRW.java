@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-import Piece.Piece;
+import Pieces.Pieces;
 
 
 
@@ -19,11 +19,11 @@ public class CsvRW {
         this.link_file = link;
     }
 
-    public Piece [] findAllPieces() {
+    public Pieces [] findAllPieces() {
     	
     	int i=0; 
     	
-        Piece[] pieces_tab= new Piece[nbCaseTotalTab];
+        Pieces[] pieces_tab= new Pieces[nbCaseTotalTab];
         
         try {
         	
@@ -38,7 +38,7 @@ public class CsvRW {
 	        	
 						while ((ligne = br.readLine()) != null)
 						{
-							final Piece piece = ligneToPiece(ligne);
+							final Pieces piece = ligneToPiece(ligne);
 							pieces_tab[i]=piece;
 					
 							i++;
@@ -66,11 +66,11 @@ public class CsvRW {
         	
     }
 
-    private static Piece ligneToPiece(String ligne) {
+    private static Pieces ligneToPiece(String ligne) {
     	
     	String[] data = ligne.split(",");
     	
-        final Piece piece = new Piece(Integer.parseInt(data[0]),Integer.parseInt(data[1]),Integer.parseInt(data[2]),Integer.parseInt(data[3]));
+        final Pieces piece = new Pieces(Integer.parseInt(data[0]),Integer.parseInt(data[1]),Integer.parseInt(data[2]),Integer.parseInt(data[3]));
 
         return piece;
     }

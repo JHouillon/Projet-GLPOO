@@ -1,0 +1,33 @@
+Modifications du 10/04 :
+
+	- Création d'une pièce avec des ses couleurs et tout et tout dans le package Pièces, 
+classe Zone.java
+	- Remise en forme des packages et classes avec le MVC qu'on a pensé et écrit sur papier
+	- Création de classes vides dans les packages pour nous aider à avancer et à avoir tous
+le même schéma de mise en forme
+
+IMPORTANT : 
+	Quentin voir dans package Pièces classe Pieces commentaires pour toi
+
+
+Travail réparti pour le moment:
+
+	QUENTIN: récupération des données depuis un fichier csv et savoir gérer les données
+
+	JEFFERSON: gestion d'au moins une grille simple en partant du principe qu'on fait 
+seulement du Drag&Drop
+
+	PIERRE: gestion de la rotation des pièces au clique et début de la gestion du Drag&Drop
+sans grille
+
+	DANIEL: créations des différentes interfaces dans le package Plateau. En résumé on a pensé
+à 3 grandes pages principales après tu mets ton style perso on en discutera plus tard :
+		1e page : Le nom du jeu avec la demande de rentrer le nom du joueur afin 
+d'enregistrer plus tard ses parties dans une BDD ou CSV, avec appuie sur bouton validation pour passer
+à la suite.
+		2e page : Le mode de jeu; choix du plateau parmis ceux disponibles (rectangle, triangle,
+losange, etc.), choix de la difficulté avec une barre de couleur (vert pour facile et rouge pour difficile)
+avec un curseur qu'on peut bouger nous même. Puis validation du choix du mode de jeu avec un bouton.
+		3e page : Le plateau de jeu, on gère déjà cette page nous avec nos pièces et les grilles. On
+en discutera donc plus tard dans le projet.
+

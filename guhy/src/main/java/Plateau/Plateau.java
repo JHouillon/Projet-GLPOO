@@ -1,20 +1,17 @@
 package Plateau;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import DAO.CsvRW;
-import Jeu.Menu;
-import Piece.Piece;
+import Pieces.Pieces;
+import Pieces.Zone;
 
 public class Plateau {
 	
-	Piece [] piecesTab;
+	Pieces [] piecesTab;
+	static Zone zone = new Zone();
 	
 	int nbCaseTotalTab=100;
 	
@@ -24,7 +21,7 @@ public class Plateau {
 		
 		CsvRW ReaderCsv=new CsvRW(link);
 		
-		Piece[] tab = ReaderCsv.findAllPieces();
+		Pieces[] tab = ReaderCsv.findAllPieces();
 		
 		this.piecesTab = tab;
 	}
@@ -34,25 +31,28 @@ public class Plateau {
 		
 		Menu menu = new Menu();
 		
-		JPanel pan = new JPanel();
-		JPanel pan1 = new JPanel();
+		//JPanel pan = new JPanel();
+		//JPanel pan1 = new JPanel();
 		
-		JTextField text = new JTextField("Maxime a un petit zizi !");
-		JTextField text1 = new JTextField("Daniel à la sida !");
+		//JTextField text = new JTextField("Maxime a un petit zizi !");
+		//JTextField text1 = new JTextField("Daniel à le sida !");
 		
-		fenetre.setSize(1024, 720);
+		fenetre.setSize(2048, 720);
 		fenetre.setTitle("Eternity");		
-		//mtest
+
+		//JLabel im = new JLabel( new ImageIcon( "src/main/java/Pieces/ESIEA_2014_logo.jpg"));
 		
-		pan.setBackground(Color.RED);
-		pan.add(text);
+		//pan.setBackground(Color.RED);
+		//pan.add(text);
+		//pan.add(im);
 		
-		pan1.setBackground(Color.ORANGE);
-		pan1.add(text1);
+		//pan1.setBackground(Color.ORANGE);
+		//pan1.add(text1);
 		
 		fenetre.setJMenuBar(menu);
-		fenetre.getContentPane().add(pan, BorderLayout.EAST);
-		fenetre.getContentPane().add(pan1, BorderLayout.WEST);
+		//fenetre.getContentPane().add(pan, BorderLayout.EAST);
+		//fenetre.getContentPane().add(pan1, BorderLayout.WEST);
+		fenetre.getContentPane().add(zone);
 		fenetre.setLayout(new GridLayout(1,2));
 		fenetre.setVisible(true);
 	}

@@ -1,4 +1,4 @@
-package Jeu;
+package Plateau;
 
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -14,7 +14,12 @@ import javax.swing.KeyStroke;
 
 public class Menu extends JMenuBar{
 
-	 public Menu() {
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 2724053099460074269L;
+
+	public Menu() {
 
 		    // Listener générique qui affiche l'action du menu utilisé
 		    ActionListener afficherMenuListener = new ActionListener() {
