@@ -14,10 +14,10 @@ public class Zone extends JComponent {
 	 */
 	private static final long serialVersionUID = 1001045674066908253L;	
 
-	int[] x_sud = {110, 170, 140};
-	int[] x_est = {170, 170, 140};
-	int[] x_nord = {170, 110, 140};
-	int[] x_west = {110, 110, 140};
+	int[] x_sud = {0, 60, 30};
+	int[] x_est = {60, 60, 30};
+	int[] x_nord = {60, 0, 30};
+	int[] x_west = {0, 0, 30};
 	
 	int[] y_sud = {60, 60, 30};
 	int[] y_est = {60, 0, 30};
@@ -27,7 +27,7 @@ public class Zone extends JComponent {
 
 	double rand ;
 	Color col = null;
-
+	
 	protected void paintComponent(Graphics g) {
 	    
 		g.setColor(Color.BLUE);
@@ -41,7 +41,7 @@ public class Zone extends JComponent {
 
 		//g.copyArea(110, 0, 60, 60, 60, 60);
 	    
-	    for(int l=0;l<5;l++){
+	  /*  for(int l=0;l<5;l++){
 	    	for(int i=0; i<5; i++){
 		    	verticaldroite(g);
 		    }
@@ -49,7 +49,7 @@ public class Zone extends JComponent {
 		    for(int i=0; i<5; i++){
 		    	verticalgauche(g);
 		    }
-	    }
+	    }*/
 	    
 	    
 	}
