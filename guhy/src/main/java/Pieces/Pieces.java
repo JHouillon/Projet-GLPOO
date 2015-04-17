@@ -3,6 +3,8 @@ package Pieces;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
+import Plateau.Plateau;
+
 public class Pieces {
 	
 	int id;
@@ -49,9 +51,97 @@ public class Pieces {
 		//this.pieces_tab = tab;
 	}
 
+	public int getId() {
+		return id;
+	}
 
 
-	public static void main(String[] args) throws Exception{
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public int getType() {
+		return type;
+	}
+
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
+
+	public int getN_face() {
+		return N_face;
+	}
+
+
+	public void setN_face(int n_face) {
+		N_face = n_face;
+	}
+
+
+	public int getO_face() {
+		return O_face;
+	}
+
+
+	public void setO_face(int o_face) {
+		O_face = o_face;
+	}
+
+
+	public int getS_face() {
+		return S_face;
+	}
+
+
+	public void setS_face(int s_face) {
+		S_face = s_face;
+	}
+
+
+	public int getE_face() {
+		return E_face;
+	}
+
+
+	public void setE_face(int e_face) {
+		E_face = e_face;
+	}
+
+
+	public int getOrientation() {
+		return orientation;
+	}
+
+
+	public void setOrientation(int orientation) {
+		this.orientation = orientation;
+	}
+
+
+	public int getPosx() {
+		return posx;
+	}
+
+
+	public void setPosx(int posx) {
+		this.posx = posx;
+	}
+
+
+	public int getPosy() {
+		return posy;
+	}
+
+
+	public void setPosy(int posy) {
+		this.posy = posy;
+	}
+
+
+	public static void main2(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new FileReader("src/main/java/Pieces/pieces.csv"));
 		String ligne = null;
 		while ((ligne = br.readLine()) != null){
@@ -68,5 +158,11 @@ public class Pieces {
 			}
 		}
 		br.close();
+	}
+	
+	public static void main(String[] args) {
+		
+		Plateau p=new Plateau("src/main/java/Pieces/pieces.csv");
+		
 	}
 }
