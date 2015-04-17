@@ -21,11 +21,11 @@ public class Pieces {
 	
 	int orientation;
 	
-	int posx=0;
-	int posy=0;
+	int posx;
+	int posy;
 	
 	
-	public Pieces(int N, int O, int S, int E) {
+	public Pieces(int N, int O, int S, int E, int posx, int posy) {
 		
 		this.N_face=N;
 		this.O_face=O;
@@ -34,15 +34,6 @@ public class Pieces {
 		
 		this.orientation=0;
 		
-		/**
-		 * Quentin tu reprends le même posx et posy
-		 * tu ne l'affectes à aucune variable défini 
-		 * dans ta parenthèse du constructeur
-		 * Je ne peux pas les rajouter car tu utilises un tableau
-		 * de 4 valeurs dans DAO->CsvRW.java
-		 * 
-		 * Je te laisse jeter un coup d'oeil
-		 */
 		this.posx=posx;
 		this.posy=posy;
 		

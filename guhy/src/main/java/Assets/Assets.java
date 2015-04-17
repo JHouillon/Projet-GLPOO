@@ -11,16 +11,16 @@ public class Assets {
 	
 	public Assets(String link_folder_face, String link_csv_pieces) {
 		
-		String link_piece_i;
+		String link_face_i;
 		int i=1;
 		boolean ok=true;
 		
 		while(!ok)
 		{
-			link_piece_i=link_folder_face+i+".png";
+			link_face_i=link_folder_face+i+".png";
 			
-			if((new File(link_piece_i)).exists())
-				this.f_collect[i]= new ImageIcon (link_piece_i);
+			if((new File(link_face_i)).exists())
+				this.f_collect[i]= new ImageIcon (link_face_i);
 			
 			else ok=false;
 			
