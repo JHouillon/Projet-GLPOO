@@ -1,7 +1,5 @@
 package Plateau;
 
-import java.awt.BorderLayout;
-import java.awt.Graphics;
 import java.awt.GridLayout;
 
 import javax.swing.JFrame;
