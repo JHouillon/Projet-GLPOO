@@ -15,8 +15,17 @@ public class Plateau {
 	static Zone zone = new Zone();
 	
 	static int nbCaseTotalTab=100;
+	static String name;
+	static JFrame fenetre;
 	
-	
+	public Plateau(String name, JFrame fenetre){
+		this.name = name;
+		this.fenetre = fenetre;
+		
+		System.out.println(name);
+		
+		ConfigurationFenetre();
+	}
 
 	public Plateau(String link) {
 		
@@ -31,7 +40,7 @@ public class Plateau {
 	}
 
 	private static void ConfigurationFenetre() {		
-		JFrame fenetre = new JFrame();
+		//JFrame fenetre = new JFrame();
 		
 		Menu menu = new Menu();
 		
@@ -42,8 +51,8 @@ public class Plateau {
 		//JTextField text = new JTextField("Maxime a un petit zizi !");
 		//JTextField text1 = new JTextField("Daniel à le sida !");
 		
-		fenetre.setSize(2048, 720);
-		fenetre.setTitle("Eternity");		
+		fenetre.setSize(720, 720);
+		fenetre.setTitle(name);		
 
 		//JLabel im = new JLabel( new ImageIcon( "src/main/java/Pieces/ESIEA_2014_logo.jpg"));
 		
@@ -59,8 +68,8 @@ public class Plateau {
 		pan.setBounds(0, 0, 60, 60);
 		pan1.setBounds(60, 60, 60, 60);
 
-		System.out.println(pan.getLocation());
-		System.out.println(pan1.getLocation());
+	//	System.out.println(pan.getLocation());
+	//	System.out.println(pan1.getLocation());
 		
 		//pan1.setBackground(Color.ORANGE);
 		//pan1.add(text1);
@@ -73,9 +82,6 @@ public class Plateau {
 		fenetre.setLayout(new GridLayout());
 		fenetre.setVisible(true);
 	}
-	
-	public static void main(String[] args){
-		ConfigurationFenetre();
-	}
+
 }
 
