@@ -28,6 +28,10 @@ public class Zone extends JComponent {
 	double rand ;
 	Color col = null;
 	
+	public Zone(int N, int O, int S, int E){
+		
+	}
+
 	protected void paintComponent(Graphics g) {
 	    
 		g.setColor(Color.BLUE);

@@ -1,27 +1,29 @@
 package Plateau;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Container;
-import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
-import javax.swing.JScrollBar;
 import javax.swing.JSlider;
 import javax.swing.JSplitPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextPane;
 
 public class ModeDeJeu {
 
-	//final JFrame modejeu = new JFrame();		
+	/**
+	 * Définition des variables de la fenêtre.
+	 * Panneaux (JPannel) : couche visible de la fenêtre par les utilisateurs
+	 * Texte (JLabel)
+	 * Bouton de sélection (JRadioButton) : choix du plateau
+	 * Bouton de validation (JButton) : enregistrements des préférences et lancement du jeu
+	 * Bouton de progression (JSlider) : choix de la diffculté du jeu
+	 * Conteneur des panneaux (Container) : contient les panneaux pour une optimisation visuelle
+	 */
 	static JPanel pan = new JPanel();
 	static JPanel pan1 = new JPanel();
 	static JPanel pan2 = new JPanel();
@@ -32,64 +34,65 @@ public class ModeDeJeu {
 	static JRadioButton plateau_losange = new JRadioButton();
 	static JButton valider = new JButton("Jouer");
 	static JSlider niveau = new JSlider(JSlider.HORIZONTAL,0,100,50);
-	static Container contenu = new JTabbedPane(JSplitPane.VERTICAL_SPLIT);
+	static Container contenu = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+	static Container contenu1 = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
 	
 	static String name;
 	static JFrame mdj;
 	
+	/**
+	 * Constructeur permettant la récupération des valeurs de la fenêtre de lancement
+	 * @param name : Nom du joueur
+	 * @param mdj : Fenetre
+	 */
 	public ModeDeJeu(String name, JFrame mdj){
 		this.name = name;
 		this.mdj = mdj;
 		
-		System.out.println(name);
 		PageModeJeu();
 	}
 	
+	/**
+	 * Création des différentes parties de la page 
+	 * pour la sélection du mode de jeu : 
+	 * difficulté et choix du plateau
+	 */
 	public static void PageModeJeu(){
-		
-		//pan = new JPanel(new GridLayout(0,1));
 
+		// Contenu du premier panneau : Récupération du nom du joueur
+		// Et affichage
 		pan.setBorder(BorderFactory.createTitledBorder(""));
-		plateau.setText(name);
+		plateau.setText("Bonjour "+name+" !");
+		
 		pan.add(plateau);
 		
-		pan1.setBorder(BorderFactory.createTitledBorder("Choix du plateau"));
-
-		//titre.setText("Mode de Jeu");
+		// Contenu du second panneau : Sélection du choix du plateau
+		pan1.setBorder(BorderFactory.createTitledBorder("Choix du plateau et de la difficulté"));
+		pan1.setLayout(new BoxLayout(pan1, BoxLayout.Y_AXIS));
 		
 		plateau_carre.setText("Carrée (défaut)");
 		plateau_triangle.setText("Triangle");
 		plateau_losange.setText("Losange");
+		titre.setText("Choix de la difficulté");
 		
-		//niveau.highlight(Color.BLUE);
-		System.out.println(niveau.getValue());
-		
-	//	pan.add(titre);
-	//	pan.add(plateau);
 		pan1.add(plateau_carre);
 		pan1.add(plateau_triangle);
 		pan1.add(plateau_losange);
+		pan1.add(titre);
 		pan1.add(niveau);
 		
+		// Contenu de troisième panneau : Sélection du niveau de difficulté
+		//pan2.setBorder(BorderFactory.createTitledBorder("Choix de la difficulté"));
+		//pan2.add(niveau);
 		
-		pan2.setBorder(BorderFactory.createTitledBorder("Choix de la Difficulté"));
-		
-	//	plateau.setText("Choix du plateau");
-		pan2.add(niveau);
-	//	System.out.println(niveau.getValue());
-		
+		// Ajout des panneaux dans un conteneur (2 composants MAXIMUM par conteneur)
 		contenu.add(pan);
 		contenu.add(pan1);
-	//	contenu.add(pan2);
 		
+		// Ajout du conteneur dans la fenêtre pour l'affichage
 		mdj.getContentPane().setLayout(new BorderLayout());
-		mdj.getContentPane().add (contenu);
-		//mdj.getContentPane().add (pan1);
+		mdj.getContentPane().add(contenu);
 		mdj.setVisible(true);
-
-		if(plateau_carre.isSelected()){
-			plateau_triangle.setFocusable(false);
-		}
 	}
 
 }

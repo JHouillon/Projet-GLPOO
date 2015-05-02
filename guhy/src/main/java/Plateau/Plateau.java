@@ -7,12 +7,11 @@ import javax.swing.JPanel;
 
 import DAO.CsvRW;
 import Pieces.Pieces;
-import Pieces.Zone;
 
 public class Plateau {
 	
 	Pieces [] piecesTab;
-	static Zone zone = new Zone();
+	//static Zone zone = new Zone();
 	
 	static int nbCaseTotalTab=100;
 	static String name;
@@ -53,6 +52,8 @@ public class Plateau {
 		
 		fenetre.setSize(720, 720);
 		fenetre.setTitle(name);		
+		fenetre.setSize(1024, 720);
+		fenetre.setTitle("Eternity");		
 
 		//JLabel im = new JLabel( new ImageIcon( "src/main/java/Pieces/ESIEA_2014_logo.jpg"));
 		
@@ -63,7 +64,7 @@ public class Plateau {
 		//pan1.setSize(60, 60);
 		
 		pan.add(pan1);
-		pan1.add(zone);
+		//pan1.add(zone);
 
 		pan.setBounds(0, 0, 60, 60);
 		pan1.setBounds(60, 60, 60, 60);
