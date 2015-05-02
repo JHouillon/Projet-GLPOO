@@ -26,9 +26,13 @@ public class PageLancement {
 	final static JFrame lancement = new JFrame();
 	static JPanel pan = new JPanel();
 	static JPanel pan1 = new JPanel();
-	static JLabel im = new JLabel( new ImageIcon( "src/main/java/Plateau/eternity2_.jpg"));
+	static JLabel img00 = new JLabel( new ImageIcon( "src/main/java/Plateau/img00.jpg"));
+	static JLabel img01 = new JLabel( new ImageIcon( "src/main/java/Plateau/img01.jpg"));
+	static JLabel img02 = new JLabel( new ImageIcon( "src/main/java/Plateau/img02.jpg"));
 	final static JTextField name = new JTextField("Entrez votre nom");
-	static JButton valider = new JButton("Jouer");
+	static JButton jouer = new JButton("Jouer");
+	static JButton commande = new JButton("Règles / Commandes");
+	static JButton valider = new JButton("C'est parti!");
 	static String nom;
 	
 	/**
@@ -47,7 +51,7 @@ public class PageLancement {
 		    }
 		});
 		
-		pan.add(im);
+		pan.add(img00);
 		pan.add(name);
 		pan.add(valider);
 		
