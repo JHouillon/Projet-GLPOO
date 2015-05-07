@@ -24,13 +24,14 @@ public class Zone extends JComponent {
 	int[] y_nord = {20, 20, 70};
 	int[] y_west = {20, 120, 70};
 	
-	int separation = 110;
+	int separation = 105;
 	
 
 	double rand ;
 	Color col = null;
 	
 	public Zone(){
+		
 	}
 	
 	public Zone(int N, int O, int S, int E){

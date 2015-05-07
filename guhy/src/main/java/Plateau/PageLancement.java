@@ -24,6 +24,7 @@ public class PageLancement {
 	 * Conteneur des panneaux (Container) : contient les panneaux pour une optimisation visuelle
 	 */
 	final static JFrame lancement = new JFrame();
+	static Menu menu = new Menu();
 	static JPanel pan = new JPanel();
 	static JPanel pan1 = new JPanel();
 	static JLabel img00 = new JLabel( new ImageIcon( "src/main/java/Plateau/img00.jpg"));
@@ -56,6 +57,7 @@ public class PageLancement {
 		pan.add(valider);
 		
 		lancement.add(pan);
+		lancement.setJMenuBar(menu);
 		lancement.setVisible(true);
 	}
 

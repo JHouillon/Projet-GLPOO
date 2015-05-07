@@ -53,9 +53,10 @@ public class ModeDeJeu {
 	 * @param name : Nom du joueur
 	 * @param mdj : Fenetre
 	 */
+	
 	public ModeDeJeu(final String name, final JFrame mdj){
-		this.name = name;
-		this.mdj = mdj;
+		ModeDeJeu.name = name;
+		ModeDeJeu.mdj = mdj;
 		
 		PageModeJeu();
 		

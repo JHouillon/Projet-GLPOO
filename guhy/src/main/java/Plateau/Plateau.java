@@ -1,12 +1,20 @@
 package Plateau;
 
-import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Frame;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSplitPane;
+import javax.swing.Spring;
 import javax.swing.SpringLayout;
 
 import DAO.CsvRW;
@@ -25,10 +33,11 @@ public class Plateau {
 //	static Container contenu = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 	
 	static Zone zone = new Zone();
+	static Graphics g;
 	
 	public Plateau(String name, JFrame fenetre){
-		this.name = name;
-		this.fenetre = fenetre;
+		Plateau.name = name;
+		Plateau.fenetre = fenetre;
 		
 		System.out.println(name);
 		
@@ -48,61 +57,102 @@ public class Plateau {
 		this.piecesTab = tab;
 	}
 
-	private static void ConfigurationFenetre() {		
-		//JFrame fenetre = new JFrame();
+	private static void ConfigurationFenetre() {	
 		
-		Menu menu = new Menu();
-	//	SpringLayout splay = new SpringLayout();
+		JFrame.setDefaultLookAndFeelDecorated(false);
+		fenetre.setExtendedState(Frame.MAXIMIZED_BOTH);
 		
-	//	JPanel panapp = new JPanel();
+		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		fenetre.setLocationRelativeTo(null);
 		
-		JPanel pan = new JPanel();
-//		GridLayout grille = new GridLayout(5,5);
-	//	pan.setLayout(grille);
+		final JPanel plateau = new JPanel();
+		SpringLayout sPlay = new SpringLayout();
 		
+		final JPanel pieces = new JPanel();		
+		GridLayout grille = new GridLayout(1,1);
+		pieces.setLayout(grille);
+	//	pieces.setBackground(Color.BLACK);
+		pieces.add(zone);
 		
+		JPanel ajout = new JPanel();
+		ajout.setLayout(new BoxLayout(ajout, BoxLayout.PAGE_AXIS));
+		JButton plus = new JButton();
+		plus.setText("Rafraîchissement");
+		plus.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				fenetre.repaint();
+			}
+		});
+		ajout.add(plus);
+		ajout.setBorder(BorderFactory.createTitledBorder("Rafraîchissement du plateau"));
 		
+		JPanel score = new JPanel();
+		score.setLayout(new BoxLayout(score, BoxLayout.PAGE_AXIS));
+		JLabel text = new JLabel();
+		text.setText("Vous êtes à X points");
+		score.add(text);
+		score.setBorder(BorderFactory.createTitledBorder("Score"));
+		
+		JPanel coups = new JPanel();
+		coups.setLayout(new BoxLayout(coups, BoxLayout.PAGE_AXIS));
+		JLabel nb = new JLabel();
+		nb.setText("Vous êtes à X coups");
+		coups.add(nb);
+		coups.setBorder(BorderFactory.createTitledBorder("Nombre de coups"));
 	
+		JPanel retry = new JPanel();
+		retry.setLayout(new BoxLayout(retry, BoxLayout.PAGE_AXIS));
+		JButton btn = new JButton();
+		btn.setText("Recommencer la partie");
+		retry.add(btn);
+		retry.setBorder(BorderFactory.createTitledBorder("Réessayer"));
 		
-		JPanel pan1 = new JPanel();
-		//JPanel pan1 = new JPanel();
+		JPanel back = new JPanel();
+		back.setLayout(new BoxLayout(back, BoxLayout.PAGE_AXIS));
+		JButton bck = new JButton();
+		bck.setText("Retourner au menu");
+	/*	bck.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				//fenetre.dispose();
+				ModeDeJeu page = new ModeDeJeu();
+				ModeDeJeu.PageModeJeu();
+			}
+		});*/
+		back.add(bck);
+		back.setBorder(BorderFactory.createTitledBorder("Annuler la partie"));
 		
-		//JTextField text = new JTextField("Maxime a un petit zizi !");
-		//JTextField text1 = new JTextField("Daniel à le sida !");
+		JPanel panelDroite = new JPanel();
+		panelDroite.setLayout(new BoxLayout(panelDroite, BoxLayout.PAGE_AXIS));
+		panelDroite.add(ajout);
+		panelDroite.add(score);
+		panelDroite.add(coups);
+		panelDroite.add(retry);
+		panelDroite.add(back);
 		
-		//fenetre.setSize(720, 720);
-		//fenetre.setTitle(name);		
-		//fenetre.setSize(1024, 720);
-		//fenetre.setTitle("Eternity");	
-
-		//JLabel im = new JLabel( new ImageIcon( "src/main/java/Pieces/ESIEA_2014_logo.jpg"));
+		plateau.add(pieces);
+		plateau.add(panelDroite);
 		
-		//pan.setBackground(Color.RED);
-		//pan.add(text);
-		//pan.add(im);
-		//pan.setSize(60, 60);
-		//pan1.setSize(60, 60);
+		SpringLayout.Constraints carteCons = sPlay.getConstraints(pieces);
+		carteCons.setY(Spring.constant(5));
 		
-		pan.add(pan1);
-		//pan1.add(zone);
-
-		pan.setBounds(0, 0, 60, 60);
-		pan1.setBounds(60, 60, 60, 60);
+		SpringLayout.Constraints ajoutCons = sPlay.getConstraints(panelDroite);
+		ajoutCons.setY(Spring.constant(5));
 		
-	//	contenu.add(zone);
-	//	contenu.add(edit);
-	//	System.out.println(pan.getLocation());
-	//	System.out.println(pan1.getLocation());
+		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+		int height = (int)dimension.getHeight();
+		int width  = (int)dimension.getWidth();
 		
-		//pan1.setBackground(Color.ORANGE);
-		//pan1.add(text1);
+		carteCons.setWidth(Spring.constant(width - (width/4))); //on définit la largeur (en pixels) de la carte
+		carteCons.setHeight(Spring.constant(height - (height/16))); //on définit la hauteur (en pixels) de la carte
 		
-	//	fenetre.setJMenuBar(menu);
-	//	fenetre.setContentPane(pan);
-		fenetre.setContentPane(zone);
-		//fenetre.getContentPane().add(pan);
-		//fenetre.getContentPane().add(pan1);
-		fenetre.setLayout(new GridLayout());
+		
+		sPlay.putConstraint(SpringLayout.WEST, pieces, 20, SpringLayout.WEST, plateau); 
+		sPlay.putConstraint(SpringLayout.WEST, panelDroite, 5, SpringLayout.EAST, pieces);
+		
+		
+		plateau.setLayout(sPlay);
+		
+		fenetre.setContentPane(plateau);
 		fenetre.setVisible(true);
 	}
 
