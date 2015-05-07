@@ -28,6 +28,9 @@ public class Zone extends JComponent {
 	double rand ;
 	Color col = null;
 	
+	public Zone(){
+	}
+	
 	public Zone(int N, int O, int S, int E){
 		
 	}

@@ -2,6 +2,8 @@ package Plateau;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -49,11 +51,20 @@ public class ModeDeJeu {
 	 * @param name : Nom du joueur
 	 * @param mdj : Fenetre
 	 */
-	public ModeDeJeu(String name, JFrame mdj){
+	public ModeDeJeu(final String name, final JFrame mdj){
 		this.name = name;
 		this.mdj = mdj;
 		
 		PageModeJeu();
+		
+		valider.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				//nom = name.getText();
+				String[] args = null;
+				Plateau jeu = new Plateau(name, mdj);
+				pan.setVisible(false);
+			}
+		});
 	}
 	
 	/**
@@ -94,6 +105,7 @@ public class ModeDeJeu {
 		pan1.add(plateau_losange);
 		pan1.add(titre);
 		pan1.add(niveau);
+		pan1.add(valider);
 		
 		// Contenu de troisième panneau : Sélection du niveau de difficulté
 		//pan2.setBorder(BorderFactory.createTitledBorder("Choix de la difficulté"));

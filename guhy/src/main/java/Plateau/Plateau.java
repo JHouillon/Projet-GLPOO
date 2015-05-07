@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 
 import DAO.CsvRW;
 import Pieces.Pieces;
+import Pieces.Zone;
 
 public class Plateau {
 	
@@ -17,6 +18,8 @@ public class Plateau {
 	static String name;
 	static JFrame fenetre;
 	
+	static Zone zone = new Zone();
+	
 	public Plateau(String name, JFrame fenetre){
 		this.name = name;
 		this.fenetre = fenetre;
@@ -24,6 +27,7 @@ public class Plateau {
 		System.out.println(name);
 		
 		ConfigurationFenetre();
+		
 	}
 
 	public Plateau(String link) {
@@ -77,7 +81,7 @@ public class Plateau {
 		
 		fenetre.setJMenuBar(menu);
 		fenetre.setContentPane(pan);
-		fenetre.setContentPane(pan1);
+		fenetre.setContentPane(zone);
 		//fenetre.getContentPane().add(pan);
 		//fenetre.getContentPane().add(pan1);
 		fenetre.setLayout(new GridLayout());
