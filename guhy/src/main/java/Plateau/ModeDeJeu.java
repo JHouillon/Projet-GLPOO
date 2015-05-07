@@ -2,16 +2,20 @@ package Plateau;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSlider;
 import javax.swing.JSplitPane;
+import javax.swing.TransferHandler;
 
 public class ModeDeJeu {
 
@@ -64,6 +68,14 @@ public class ModeDeJeu {
 		pan.setBorder(BorderFactory.createTitledBorder(""));
 		plateau.setText("Bonjour "+name+" !");
 		
+		plateau.setTransferHandler(new TransferHandler("text"));
+		plateau.addMouseListener(new MouseAdapter(){
+			public void mousePressed(MouseEvent e){
+				JComponent lab = (JComponent)e.getSource();
+				TransferHandler handle = lab.getTransferHandler();
+				handle.exportAsDrag(lab,e,TransferHandler.COPY);
+			}
+		});
 		pan.add(plateau);
 		
 		// Contenu du second panneau : Sélection du choix du plateau
@@ -74,6 +86,8 @@ public class ModeDeJeu {
 		plateau_triangle.setText("Triangle");
 		plateau_losange.setText("Losange");
 		titre.setText("Choix de la difficulté");
+		
+	//	pan1.setDragEnabled(true);
 		
 		pan1.add(plateau_carre);
 		pan1.add(plateau_triangle);
