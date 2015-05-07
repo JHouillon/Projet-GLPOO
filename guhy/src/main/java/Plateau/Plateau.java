@@ -22,7 +22,7 @@ public class Plateau {
 	static String name;
 	static JFrame fenetre;
 	static JEditorPane edit = new JEditorPane();
-	static Container contenu = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+//	static Container contenu = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 	
 	static Zone zone = new Zone();
 	
@@ -52,13 +52,13 @@ public class Plateau {
 		//JFrame fenetre = new JFrame();
 		
 		Menu menu = new Menu();
-		SpringLayout splay = new SpringLayout();
+	//	SpringLayout splay = new SpringLayout();
 		
-		JPanel panapp = new JPanel();
+	//	JPanel panapp = new JPanel();
 		
 		JPanel pan = new JPanel();
-		GridLayout grille = new GridLayout(5,5);
-		pan.setLayout(grille);
+//		GridLayout grille = new GridLayout(5,5);
+	//	pan.setLayout(grille);
 		
 		
 		
@@ -89,8 +89,8 @@ public class Plateau {
 		pan.setBounds(0, 0, 60, 60);
 		pan1.setBounds(60, 60, 60, 60);
 		
-		contenu.add(zone);
-		contenu.add(edit);
+	//	contenu.add(zone);
+	//	contenu.add(edit);
 	//	System.out.println(pan.getLocation());
 	//	System.out.println(pan1.getLocation());
 		
@@ -99,7 +99,7 @@ public class Plateau {
 		
 	//	fenetre.setJMenuBar(menu);
 	//	fenetre.setContentPane(pan);
-		fenetre.setContentPane(contenu);
+		fenetre.setContentPane(zone);
 		//fenetre.getContentPane().add(pan);
 		//fenetre.getContentPane().add(pan1);
 		fenetre.setLayout(new GridLayout());
