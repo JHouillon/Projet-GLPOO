@@ -11,6 +11,7 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -35,6 +36,7 @@ public class ModeDeJeu {
 	static JPanel pan2 = new JPanel();
 	static JLabel titre = new JLabel();
 	static JLabel plateau = new JLabel();
+	static JEditorPane edit = new JEditorPane();
 	static JRadioButton plateau_carre = new JRadioButton();
 	static JRadioButton plateau_triangle = new JRadioButton();
 	static JRadioButton plateau_losange = new JRadioButton();
@@ -106,6 +108,7 @@ public class ModeDeJeu {
 		pan1.add(titre);
 		pan1.add(niveau);
 		pan1.add(valider);
+		//pan1.add(edit);
 		
 		// Contenu de troisième panneau : Sélection du niveau de difficulté
 		//pan2.setBorder(BorderFactory.createTitledBorder("Choix de la difficulté"));

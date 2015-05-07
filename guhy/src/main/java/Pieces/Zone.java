@@ -48,7 +48,7 @@ public class Zone extends JComponent {
 
 		//g.copyArea(110, 0, 60, 60, 60, 60);
 	    
-	  /*  for(int l=0;l<5;l++){
+	    for(int l=0;l<5;l++){
 	    	for(int i=0; i<5; i++){
 		    	verticaldroite(g);
 		    }
@@ -56,7 +56,7 @@ public class Zone extends JComponent {
 		    for(int i=0; i<5; i++){
 		    	verticalgauche(g);
 		    }
-	    }*/
+	    }
 	    
 	    
 	}
@@ -155,7 +155,7 @@ public class Zone extends JComponent {
 	
 	public void CouleurRandom() {
 		
-		rand = Math.random();
+		int rand = (int) Math.random()*4;
 		if(rand == 0)
 			col = Color.RED;
 		else if(rand==1)
