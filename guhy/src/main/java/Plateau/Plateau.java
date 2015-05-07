@@ -2,17 +2,12 @@ package Plateau;
 
 import java.awt.Container;
 import java.awt.GridLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
-import javax.swing.JComponent;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
-import javax.swing.Spring;
 import javax.swing.SpringLayout;
-import javax.swing.TransferHandler;
 
 import DAO.CsvRW;
 import Pieces.Pieces;
