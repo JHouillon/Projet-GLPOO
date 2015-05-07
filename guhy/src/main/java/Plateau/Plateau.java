@@ -2,6 +2,7 @@ package Plateau;
 
 import java.awt.GridLayout;
 
+import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -47,12 +48,8 @@ public class Plateau {
 		
 		Menu menu = new Menu();
 		
-		JPanel pan = new JPanel();
-		JPanel pan1 = new JPanel();
+		JEditorPane pan = new JEditorPane();
 		//JPanel pan1 = new JPanel();
-		
-		//JTextField text = new JTextField("Maxime a un petit zizi !");
-		//JTextField text1 = new JTextField("Daniel à le sida !");
 		
 		fenetre.setSize(720, 720);
 		fenetre.setTitle(name);		
@@ -67,11 +64,11 @@ public class Plateau {
 		//pan.setSize(60, 60);
 		//pan1.setSize(60, 60);
 		
-		pan.add(pan1);
+		//pan.add(pan1);
 		//pan1.add(zone);
 
 		pan.setBounds(0, 0, 60, 60);
-		pan1.setBounds(60, 60, 60, 60);
+		//pan1.setBounds(60, 60, 60, 60);
 
 	//	System.out.println(pan.getLocation());
 	//	System.out.println(pan1.getLocation());

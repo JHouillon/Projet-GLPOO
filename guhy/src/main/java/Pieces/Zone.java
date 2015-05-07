@@ -11,18 +11,18 @@ public class Zone extends JComponent {
 	 * Génération automatique de l'id de la classe
 	 * 
 	 * Création des faces triangle par triangle
-	 */
+	 **/
 	private static final long serialVersionUID = 1001045674066908253L;	
 
-	int[] x_sud = {0, 60, 30};
-	int[] x_est = {60, 60, 30};
-	int[] x_nord = {60, 0, 30};
-	int[] x_west = {0, 0, 30};
+	int[] x_sud = {0, 100, 50};
+	int[] x_est = {100, 100, 50};
+	int[] x_nord = {100, 0, 50};
+	int[] x_west = {0, 0, 50};
 	
-	int[] y_sud = {60, 60, 30};
-	int[] y_est = {60, 0, 30};
-	int[] y_nord = {0, 0, 30};
-	int[] y_west = {0, 60, 30};
+	int[] y_sud = {100, 100, 50};
+	int[] y_est = {100, 0, 50};
+	int[] y_nord = {0, 0, 50};
+	int[] y_west = {0, 100, 50};
 	
 
 	double rand ;
@@ -35,9 +35,9 @@ public class Zone extends JComponent {
 		
 	}
 
-	protected void paintComponent(Graphics g) {
-	    
-		g.setColor(Color.BLUE);
+	protected void paintComponent(Graphics g)
+	{
+	    g.setColor(Color.BLUE);
 	    g.fillPolygon(x_sud, y_sud, 3);// SUD
 		g.setColor(Color.RED);
 	    g.fillPolygon(x_est, y_est, 3);// EST
@@ -45,39 +45,38 @@ public class Zone extends JComponent {
 	    g.fillPolygon(x_nord, y_nord, 3);// NORD
 		g.setColor(Color.BLACK);
 	    g.fillPolygon(x_west, y_west, 3);// WEST
-
-		//g.copyArea(110, 0, 60, 60, 60, 60);
 	    
-	  /*  for(int l=0;l<5;l++){
-	    	for(int i=0; i<5; i++){
-		    	verticaldroite(g);
-		    }
+	    for(int i=0;i<3;i++)
+	    {
+	    	for(int j=0; j<3; j++)
+	    	{
+			    verticaldroite(g);
+	    	}
+	    	
 		    horizontal(g);
-		    for(int i=0; i<5; i++){
-		    	verticalgauche(g);
-		    }
-	    }*/
-	    
-	    
+		    for(int j=0; j<3; j++)
+	    	{
+			    verticalgauche(g);
+	    	}
+	    }
 	}
 
 	public void verticaldroite(Graphics g){
 		
 		
 		for(int i=0; i<x_sud.length;i++){
-			x_sud[i] = x_sud[i]+120;
+			x_sud[i] = x_sud[i]+110;
 		}
 		for(int i=0; i<x_sud.length;i++){
-			x_nord[i] = x_nord[i]+120;
+			x_nord[i] = x_nord[i]+110;
 		}
 		for(int i=0; i<x_sud.length;i++){
-			x_est[i] = x_est[i]+120;
+			x_est[i] = x_est[i]+110;
 		}
 		for(int i=0; i<x_sud.length;i++){
-			x_west[i] = x_west[i]+120;
+			x_west[i] = x_west[i]+110;
 		}
-		
-		CouleurRandom();		
+				
 		g.setColor(col);
 	    g.fillPolygon(x_sud, y_sud, 3);// SUD
 	    CouleurRandom();
@@ -97,16 +96,16 @@ public class Zone extends JComponent {
 	public void verticalgauche(Graphics g){
 
 		for(int i=0; i<x_sud.length;i++){
-			x_sud[i] = x_sud[i]-120;
+			x_sud[i] = x_sud[i]-110;
 		}
 		for(int i=0; i<x_sud.length;i++){
-			x_nord[i] = x_nord[i]-120;
+			x_nord[i] = x_nord[i]-110;
 		}
 		for(int i=0; i<x_sud.length;i++){
-			x_est[i] = x_est[i]-120;
+			x_est[i] = x_est[i]-110;
 		}
 		for(int i=0; i<x_sud.length;i++){
-			x_west[i] = x_west[i]-120;
+			x_west[i] = x_west[i]-110;
 		}
 		CouleurRandom();		
 		g.setColor(col);
@@ -128,16 +127,16 @@ public class Zone extends JComponent {
 	
 	public void horizontal(Graphics g){
 		 for(int i=0; i<y_sud.length;i++){
-				y_sud[i] = y_sud[i]+120;
+				y_sud[i] = y_sud[i]+110;
 			}
 			for(int i=0; i<x_sud.length;i++){
-				y_nord[i] = y_nord[i]+120;
+				y_nord[i] = y_nord[i]+110;
 			}
 			for(int i=0; i<x_sud.length;i++){
-				y_est[i] = y_est[i]+120;
+				y_est[i] = y_est[i]+110;
 			}
 			for(int i=0; i<x_sud.length;i++){
-				y_west[i] = y_west[i]+120;
+				y_west[i] = y_west[i]+110;
 			}
 			CouleurRandom();		
 			g.setColor(col);
@@ -155,7 +154,7 @@ public class Zone extends JComponent {
 	
 	public void CouleurRandom() {
 		
-		rand = Math.random();
+		int rand = (int) (Math.random()*4);
 		if(rand == 0)
 			col = Color.RED;
 		else if(rand==1)
