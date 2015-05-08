@@ -98,7 +98,7 @@ public class Plateau {
 
 			public void mouseDragged(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				nombre= MouseEvent.MOUSE_CLICKED;
+			//	arg0.
 				nombre ++;
 				nb.setText("Vous êtes à "+nombre+" de coups");
 				nb.repaint();
