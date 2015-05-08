@@ -24,6 +24,9 @@ public class Zone extends JComponent {
 	int[] y_nord = {20, 20, 70};
 	int[] y_west = {20, 120, 70};
 	
+	static int X;
+	static int Y;
+	
 	int separation = 105;
 	int nombre;
 
@@ -45,7 +48,7 @@ public class Zone extends JComponent {
 	{
 	    doTriangle(x_sud, y_sud, g);// SUD
 	    doTriangle(x_est, y_est, g);// EST
-	    doTriangleN(x_nord, y_nord, g);// NORD
+	    doTriangle(x_nord, y_nord, g);// NORD
 	    doTriangle(x_west, y_west, g);// WEST
 	    
 	    for(int i=0;i<nombre;i++)
@@ -160,13 +163,12 @@ public class Zone extends JComponent {
 		g.drawPolygon(x, y, 3);
 	}
 	
-	public void doTriangleN(int[] x, int[]y, Graphics g)
+	public static void doTriangleN(int x, int y, Graphics g)
 	{
-		doTriangle(x, y, g);
 		g.setColor(Color.ORANGE);
-		g.drawRect(x[1], y[1], 100, 100);
-		g.drawRect(x[1]-1, y[1]-1, 102, 102);
-		g.drawRect(x[1]-2, y[1]-2, 103, 103);
-		g.drawRect(x[1]-3, y[1]-3, 104, 104);
+		g.drawRect(x, y, 100, 100);
+		g.drawRect(x-1, y-1, 102, 102);
+		g.drawRect(x-2, y-2, 104, 104);
+		g.drawRect(x-3, y-3, 106, 106);
 	}
 }
