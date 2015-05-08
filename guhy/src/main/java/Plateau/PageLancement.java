@@ -73,7 +73,7 @@ public class PageLancement {
 		valider.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				nom = name.getText();
-				String[] args = null;
+				//String[] args = null;
 				ModeDeJeu mdj = new ModeDeJeu(nom, lancement);
 				pan.setVisible(false);
 			}

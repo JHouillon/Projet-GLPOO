@@ -1,6 +1,7 @@
 package Plateau;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +10,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JEditorPane;
@@ -19,6 +21,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JSlider;
 import javax.swing.JSplitPane;
 import javax.swing.TransferHandler;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class ModeDeJeu {
 
@@ -37,16 +41,18 @@ public class ModeDeJeu {
 	static JLabel titre = new JLabel();
 	static JLabel plateau = new JLabel();
 	static JEditorPane edit = new JEditorPane();
+	static ButtonGroup choix = new ButtonGroup();
 	static JRadioButton plateau_carre = new JRadioButton();
 	static JRadioButton plateau_triangle = new JRadioButton();
 	static JRadioButton plateau_losange = new JRadioButton();
 	static JButton valider = new JButton("Jouer");
-	static JSlider niveau = new JSlider(JSlider.HORIZONTAL,0,100,50);
+	static JSlider niveau = new JSlider(JSlider.HORIZONTAL,0,4,2);
 	static Container contenu = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
 	static Container contenu1 = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
 	
 	static String name;
 	static JFrame mdj;
+	static int n = 3;
 	
 	/**
 	 * Constructeur permettant la récupération des valeurs de la fenêtre de lancement
@@ -64,7 +70,7 @@ public class ModeDeJeu {
 			public void actionPerformed(ActionEvent arg0) {
 				//nom = name.getText();
 				String[] args = null;
-				Plateau jeu = new Plateau(name, mdj);
+				Plateau jeu = new Plateau(name, mdj, n);
 				pan.setVisible(false);
 			}
 		});
@@ -99,9 +105,35 @@ public class ModeDeJeu {
 		plateau_carre.setText("Carrée (défaut)");
 		plateau_triangle.setText("Triangle");
 		plateau_losange.setText("Losange");
-		titre.setText("Choix de la difficulté");
+		choix.add(plateau_carre);
+		choix.add(plateau_triangle);
+		choix.add(plateau_losange);
 		
-	//	pan1.setDragEnabled(true);
+		titre.setText("Choix de la difficulté");
+		niveau.setPaintTicks(true);
+		niveau.setBackground(Color.YELLOW);
+		niveau.addChangeListener(new ChangeListener(){
+			public void stateChanged(ChangeEvent arg0) {
+				n = niveau.getValue();
+				if(n<=1){					
+					niveau.setBackground(Color.GREEN);
+					titre.setText("Débutant : 3x3");
+				}
+				else if(n<=2 && n>1){
+					niveau.setBackground(Color.YELLOW);
+					titre.setText("Moyen : 4x4");					
+				}					
+				else if(n<=3 && n>2){
+					niveau.setBackground(Color.ORANGE);
+					titre.setText("Difficile : 5x5");
+				}					
+				else{
+					niveau.setBackground(Color.RED);
+					titre.setText("Expert : 6x6");
+				}
+					
+			}
+		});
 		
 		pan1.add(plateau_carre);
 		pan1.add(plateau_triangle);
@@ -109,11 +141,6 @@ public class ModeDeJeu {
 		pan1.add(titre);
 		pan1.add(niveau);
 		pan1.add(valider);
-		//pan1.add(edit);
-		
-		// Contenu de troisième panneau : Sélection du niveau de difficulté
-		//pan2.setBorder(BorderFactory.createTitledBorder("Choix de la difficulté"));
-		//pan2.add(niveau);
 		
 		// Ajout des panneaux dans un conteneur (2 composants MAXIMUM par conteneur)
 		contenu.add(pan);

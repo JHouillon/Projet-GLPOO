@@ -25,13 +25,16 @@ public class Zone extends JComponent {
 	int[] y_west = {20, 120, 70};
 	
 	int separation = 105;
-	
+	int nombre;
 
 	double rand ;
 	Color col = null;
 	
-	public Zone(){
-		
+	public Zone(int nombre){
+		this.nombre = nombre + 1;
+		if(nombre == 0 || nombre == 1){
+			nombre = 3;
+		}
 	}
 	
 	public Zone(int N, int O, int S, int E){
@@ -45,15 +48,15 @@ public class Zone extends JComponent {
 	    doTriangleN(x_nord, y_nord, g);// NORD
 	    doTriangle(x_west, y_west, g);// WEST
 	    
-	    for(int i=0;i<3;i++)
+	    for(int i=0;i<nombre;i++)
 	    {
-	    	for(int j=0; j<3; j++)
+	    	for(int j=0; j<nombre; j++)
 	    	{
 			    verticaldroite(g);
 	    	}
 	    	
 		    horizontal(g);
-		    for(int j=0; j<3; j++)
+		    for(int j=0; j<nombre; j++)
 	    	{
 			    verticalgauche(g);
 	    	}

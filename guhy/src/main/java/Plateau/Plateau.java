@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -24,24 +25,27 @@ import Pieces.Zone;
 public class Plateau {
 	
 	Pieces [] piecesTab;
-	//static Zone zone = new Zone();
 	
 	static int nbCaseTotalTab=100;
 	static String name;
 	static JFrame fenetre;
+	static int difficulte;
 	static JEditorPane edit = new JEditorPane();
-//	static Container contenu = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 	
-	static Zone zone = new Zone();
+	static MouseEvent e;
+	static Zone zone = new Zone(difficulte);
 	static Graphics g;
 	
-	public Plateau(String name, JFrame fenetre){
+	static int x,y;
+	
+	public Plateau(String name, JFrame fenetre, int difficulte){
 		Plateau.name = name;
 		Plateau.fenetre = fenetre;
+		Plateau.difficulte = difficulte;
 		
 		System.out.println(name);
 		
-		ConfigurationFenetre();
+		ConfigurationFenetre();	
 		
 	}
 
@@ -71,8 +75,7 @@ public class Plateau {
 		final JPanel pieces = new JPanel();		
 		GridLayout grille = new GridLayout(1,1);
 		pieces.setLayout(grille);
-	//	pieces.setBackground(Color.BLACK);
-		pieces.add(zone);
+		pieces.add(new Zone(difficulte));
 		
 		JPanel ajout = new JPanel();
 		ajout.setLayout(new BoxLayout(ajout, BoxLayout.PAGE_AXIS));
@@ -80,18 +83,20 @@ public class Plateau {
 		plus.setText("Rafraîchissement");
 		plus.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
-				fenetre.repaint();
+				ConfigurationFenetre();
 			}
 		});
 		ajout.add(plus);
 		ajout.setBorder(BorderFactory.createTitledBorder("Rafraîchissement du plateau"));
 		
-		JPanel score = new JPanel();
-		score.setLayout(new BoxLayout(score, BoxLayout.PAGE_AXIS));
+		JPanel position = new JPanel();
+		position.setLayout(new BoxLayout(position, BoxLayout.PAGE_AXIS));
 		JLabel text = new JLabel();
-		text.setText("Vous êtes à X points");
-		score.add(text);
-		score.setBorder(BorderFactory.createTitledBorder("Score"));
+	//	PointerInfo pointer = MouseInfo.getPointerInfo();
+	//	Point location = pointer.getLocation();
+		text.setText("Position : "+x+" : "+y);
+		position.add(text);
+		position.setBorder(BorderFactory.createTitledBorder("Score"));
 		
 		JPanel coups = new JPanel();
 		coups.setLayout(new BoxLayout(coups, BoxLayout.PAGE_AXIS));
@@ -111,20 +116,20 @@ public class Plateau {
 		back.setLayout(new BoxLayout(back, BoxLayout.PAGE_AXIS));
 		JButton bck = new JButton();
 		bck.setText("Retourner au menu");
-	/*	bck.addActionListener(new ActionListener(){
+		bck.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				//fenetre.dispose();
-				ModeDeJeu page = new ModeDeJeu();
-				ModeDeJeu.PageModeJeu();
+				ModeDeJeu mdj = new ModeDeJeu(name, fenetre);
+				mdj.PageModeJeu();
+				plateau.setVisible(false);
 			}
-		});*/
+		});
 		back.add(bck);
 		back.setBorder(BorderFactory.createTitledBorder("Annuler la partie"));
 		
 		JPanel panelDroite = new JPanel();
 		panelDroite.setLayout(new BoxLayout(panelDroite, BoxLayout.PAGE_AXIS));
 		panelDroite.add(ajout);
-		panelDroite.add(score);
+		panelDroite.add(position);
 		panelDroite.add(coups);
 		panelDroite.add(retry);
 		panelDroite.add(back);
@@ -155,6 +160,5 @@ public class Plateau {
 		fenetre.setContentPane(plateau);
 		fenetre.setVisible(true);
 	}
-
 }
 
