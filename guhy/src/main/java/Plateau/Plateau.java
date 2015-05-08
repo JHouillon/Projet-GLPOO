@@ -33,8 +33,11 @@ public class Plateau {
 	static int nbCaseTotalTab=100;
 	static String name;
 	static JFrame fenetre;
+	final static JPanel plateau = new JPanel();
 	static int difficulte;
 	static JLabel text = new JLabel();
+	static JLabel nb;
+	static JButton bck = new JButton();
 	static JEditorPane edit = new JEditorPane();
 	
 	static MouseEvent e;
@@ -43,10 +46,10 @@ public class Plateau {
 	static Zone zone = new Zone(difficulte);
 	static Graphics g;
 	
-	static int x,y;
+	static int x,y, nombre=0;
 	static int x1min=40, x1max=143, y1min=71, y1max=175;
 	
-	public Plateau(String name, JFrame fenetre, int difficulte){
+	public Plateau(final String name, final JFrame fenetre, int difficulte){
 		Plateau.name = name;
 		Plateau.fenetre = fenetre;
 		Plateau.difficulte = difficulte;
@@ -55,6 +58,15 @@ public class Plateau {
 		
 		ConfigurationFenetre();	
 		
+		bck.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				//nom = name.getText();
+				String[] args = null;
+				ModeDeJeu jeu = new ModeDeJeu(name, fenetre);
+				plateau.setVisible(false);
+			}
+		});
+		
 	}
 
 	public Plateau(String link) {
@@ -62,7 +74,6 @@ public class Plateau {
 		System.out.println("Création PLateau");
 		
 		CsvRW ReaderCsv=new CsvRW(link);
-		
 		
 		Pieces[] tab = ReaderCsv.findAllPieces();
 		
@@ -77,8 +88,7 @@ public class Plateau {
 		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		fenetre.setLocationRelativeTo(null);
 		
-		final JPanel plateau = new JPanel();
-		SpringLayout sPlay = new SpringLayout();
+		final SpringLayout sPlay = new SpringLayout();
 		
 		final JPanel pieces = new JPanel();		
 		GridLayout grille = new GridLayout(1,1);
@@ -88,16 +98,24 @@ public class Plateau {
 
 			public void mouseDragged(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+				nombre= MouseEvent.MOUSE_CLICKED;
+				nombre ++;
+				nb.setText("Vous êtes à "+nombre+" de coups");
+				nb.repaint();
 			}
 
 			public void mouseMoved(MouseEvent arg0) {
 				// TODO Auto-generated method stub
 				pointer = MouseInfo.getPointerInfo();
 				location = pointer.getLocation();
-				text.setText("Position : "+location.x+" ; "+location.y);
-					
-				if(location.x >= x1min && location.x <= x1max && location.y >= y1min && location.y <= y1max){
+			//	text.setText("Position : "+location.x+" ; "+location.y);
+				
+				// Limitation de la zone à 3x3 par défaut
+				if(location.x < x1min || location.x > x1max+(105*2) && location.y < y1min || location.y > y1max+(105*2)){
+					text.setText("Vous êtes en dehors de la zone de jeu !");
+				}
+				
+				else if(location.x >= x1min && location.x <= x1max && location.y >= y1min && location.y <= y1max){
 					text.setText("Vous êtes sur la pièce 1,1");
 				}
 				
@@ -142,6 +160,10 @@ public class Plateau {
 				}
 				
 				if(difficulte >= 2){
+					// limite de la zone 
+					if(location.x < x1min || location.x > x1max+(105*3) && location.y < y1min || location.y > y1max+(105*3)){
+						text.setText("Vous êtes en dehors de la zone de jeu !");
+					}
 					// ligne 1
 					if(location.x >= x1min+(105*3) && location.x <= x1max+(105*3) && location.y >= y1min+(2*3) && location.y <= y1max+(2*3)){
 						text.setText("Vous êtes sur la pièce 1,4");
@@ -169,7 +191,11 @@ public class Plateau {
 						text.setText("Vous êtes sur la pièce 4,4");
 					}
 				}
-				if(difficulte >= 3){
+				if(difficulte >= 3){ 
+					// limite de la zone 
+					if(location.x < x1min || location.x > x1max+(105*4) && location.y < y1min || location.y > y1max+(105*4)){
+						text.setText("Vous êtes en dehors de la zone de jeu !");
+					}
 					// ligne 1
 					if(location.x >= x1min+(105*4) && location.x <= x1max+(105*4) && location.y >= y1min+(2*4) && location.y <= y1max+(2*4)){
 						text.setText("Vous êtes sur la pièce 1,5");
@@ -205,6 +231,10 @@ public class Plateau {
 					}
 				}
 				if(difficulte == 4){
+					// limite de la zone 
+					if(location.x < x1min || location.x > x1max+(105*5) && location.y < y1min || location.y > y1max+(105*5)){
+						text.setText("Vous êtes en dehors de la zone de jeu !");
+					}
 					// ligne 1
 					if(location.x >= x1min+(105*5) && location.x <= x1max+(105*5) && location.y >= y1min+(2*5) && location.y <= y1max+(2*5)){
 						text.setText("Vous êtes sur la pièce 1,6");
@@ -271,8 +301,7 @@ public class Plateau {
 		
 		JPanel coups = new JPanel();
 		coups.setLayout(new BoxLayout(coups, BoxLayout.PAGE_AXIS));
-		JLabel nb = new JLabel();
-		nb.setText("Vous êtes à X coups");
+		nb = new JLabel();
 		coups.add(nb);
 		coups.setBorder(BorderFactory.createTitledBorder("Nombre de coups"));
 	
@@ -285,15 +314,9 @@ public class Plateau {
 		
 		JPanel back = new JPanel();
 		back.setLayout(new BoxLayout(back, BoxLayout.PAGE_AXIS));
-		JButton bck = new JButton();
+		bck = new JButton();
 		bck.setText("Retourner au menu");
-		bck.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				ModeDeJeu mdj = new ModeDeJeu(name, fenetre);
-				mdj.PageModeJeu();
-				plateau.setVisible(false);
-			}
-		});
+		
 		back.add(bck);
 		back.setBorder(BorderFactory.createTitledBorder("Annuler la partie"));
 		

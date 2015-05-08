@@ -62,6 +62,10 @@ public class Zone extends JComponent {
 	    	}
 	    }
 	}
+	
+	public void inverser(Graphics g){
+		
+	}
 
 	public void verticaldroite(Graphics g){
 		
