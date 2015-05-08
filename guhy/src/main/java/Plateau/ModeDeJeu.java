@@ -46,13 +46,13 @@ public class ModeDeJeu {
 	static JRadioButton plateau_triangle = new JRadioButton();
 	static JRadioButton plateau_losange = new JRadioButton();
 	static JButton valider = new JButton("Jouer");
-	static JSlider niveau = new JSlider(JSlider.HORIZONTAL,0,4,2);
+	static JSlider niveau = new JSlider(JSlider.HORIZONTAL,1,4,2);
 	static Container contenu = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
 	static Container contenu1 = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
 	
 	static String name;
 	static JFrame mdj;
-	static int n = 3;
+	static int n = 2;
 	
 	/**
 	 * Constructeur permettant la récupération des valeurs de la fenêtre de lancement

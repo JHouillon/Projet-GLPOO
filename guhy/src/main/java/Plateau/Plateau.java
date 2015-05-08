@@ -4,9 +4,13 @@ import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.PointerInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -30,13 +34,17 @@ public class Plateau {
 	static String name;
 	static JFrame fenetre;
 	static int difficulte;
+	static JLabel text = new JLabel();
 	static JEditorPane edit = new JEditorPane();
 	
 	static MouseEvent e;
+	static PointerInfo pointer;
+	static Point location;
 	static Zone zone = new Zone(difficulte);
 	static Graphics g;
 	
 	static int x,y;
+	static int x1min=40, x1max=143, y1min=71, y1max=175;
 	
 	public Plateau(String name, JFrame fenetre, int difficulte){
 		Plateau.name = name;
@@ -76,6 +84,172 @@ public class Plateau {
 		GridLayout grille = new GridLayout(1,1);
 		pieces.setLayout(grille);
 		pieces.add(new Zone(difficulte));
+		pieces.addMouseMotionListener(new MouseMotionListener(){
+
+			public void mouseDragged(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			public void mouseMoved(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				pointer = MouseInfo.getPointerInfo();
+				location = pointer.getLocation();
+				text.setText("Position : "+location.x+" ; "+location.y);
+					
+				if(location.x >= x1min && location.x <= x1max && location.y >= y1min && location.y <= y1max){
+					text.setText("Vous êtes sur la pièce 1,1");
+				}
+				
+				/*
+				 * Position horizontale des pièces ligne1
+				 */
+				else if(location.x >= x1min+105 && location.x <= x1max+105 && location.y >= y1min+2 && location.y <= y1max+2){
+					text.setText("Vous êtes sur la pièce 1,2");
+				}
+				else if(location.x >= x1min+(105*2) && location.x <= x1max+(105*2) && location.y >= y1min+(2*2) && location.y <= y1max+(2*2)){
+					text.setText("Vous êtes sur la pièce 1,3");
+				}
+
+				/*
+				 * Position verticale des pièces colone 1
+				 */
+				else if(location.x >= x1min+2 && location.x <= x1max+2 && location.y >= y1min+105 && location.y <= y1max+105){
+					text.setText("Vous êtes sur la pièce 2,1");
+				}
+				else if(location.x >= x1min+(2*2) && location.x <= x1max+(2*2) && location.y >= y1min+(2*105) && location.y <= y1max+(2*105)){
+					text.setText("Vous êtes sur la pièce 3,1");
+				}
+				
+				/*
+				 * Position horizontale des pièces ligne2
+				 */
+				else if(location.x >= x1min+2+105 && location.x <= x1max+2+105 && location.y >= y1min+105+2 && location.y <= y1max+105+2){
+					text.setText("Vous êtes sur la pièce 2,2");
+				}
+				else if(location.x >= x1min+2+(105*2) && location.x <= x1max+2+(105*2) && location.y >= y1min+105+(2*2) && location.y <= y1max+105+(2*2)){
+					text.setText("Vous êtes sur la pièce 2,3");
+				}
+				
+				/*
+				 * Position horizontale des pièces ligne3
+				 */
+				else if(location.x >= x1min+(2*2)+105 && location.x <= x1max+(2*2)+105 && location.y >= y1min+(2*105)+2 && location.y <= y1max+(2*105)+2){
+					text.setText("Vous êtes sur la pièce 3,2");
+				}
+				else if(location.x >= x1min+(2*2)+(105*2) && location.x <= x1max+(2*2)+(105*2) && location.y >= y1min+(2*105)+(2*2) && location.y <= y1max+(2*105)+(2*2)){
+					text.setText("Vous êtes sur la pièce 3,3");
+				}
+				
+				if(difficulte >= 2){
+					// ligne 1
+					if(location.x >= x1min+(105*3) && location.x <= x1max+(105*3) && location.y >= y1min+(2*3) && location.y <= y1max+(2*3)){
+						text.setText("Vous êtes sur la pièce 1,4");
+					}
+					// ligne 2
+					else if(location.x >= x1min+2+(105*3) && location.x <= x1max+2+(105*3) && location.y >= y1min+105+(2*3) && location.y <= y1max+105+(2*3)){
+						text.setText("Vous êtes sur la pièce 2,4");
+					}
+					// ligne 3
+					else if(location.x >= x1min+(2*3)+(105*3) && location.x <= x1max+(2*3)+(105*3) && location.y >= y1min+(2*105)+(2*2) && location.y <= y1max+(2*105)+(2*2)){
+						text.setText("Vous êtes sur la pièce 3,4");
+					}
+					// colonne 1
+					else if(location.x >= x1min+(3*2) && location.x <= x1max+(3*2) && location.y >= y1min+(3*105) && location.y <= y1max+(3*105)){
+						text.setText("Vous êtes sur la pièce 4,1");
+					}
+					// ligne 4
+					else if(location.x >= x1min+(2*2)+105 && location.x <= x1max+(2*2)+105 && location.y >= y1min+(3*105)+2 && location.y <= y1max+(3*105)+2){
+						text.setText("Vous êtes sur la pièce 4,2");
+					}
+					else if(location.x >= x1min+(2*2)+(105*2) && location.x <= x1max+(2*2)+(105*2) && location.y >= y1min+(3*105)+(3*2) && location.y <= y1max+(3*105)+(3*2)){
+						text.setText("Vous êtes sur la pièce 4,3");
+					}
+					else if(location.x >= x1min+(2*3)+(105*3) && location.x <= x1max+(2*3)+(105*3) && location.y >= y1min+(3*105)+(3*2) && location.y <= y1max+(3*105)+(3*2)){
+						text.setText("Vous êtes sur la pièce 4,4");
+					}
+				}
+				if(difficulte >= 3){
+					// ligne 1
+					if(location.x >= x1min+(105*4) && location.x <= x1max+(105*4) && location.y >= y1min+(2*4) && location.y <= y1max+(2*4)){
+						text.setText("Vous êtes sur la pièce 1,5");
+					}
+					// ligne 2
+					else if(location.x >= x1min+2+(105*4) && location.x <= x1max+2+(105*4) && location.y >= y1min+105+(2*4) && location.y <= y1max+105+(2*4)){
+						text.setText("Vous êtes sur la pièce 2,5");
+					}
+					// ligne 3
+					else if(location.x >= x1min+(2*4)+(105*4) && location.x <= x1max+(2*4)+(105*4) && location.y >= y1min+(2*105)+(2*2) && location.y <= y1max+(2*105)+(2*2)){
+						text.setText("Vous êtes sur la pièce 3,5");
+					}
+					// ligne 4
+					else if(location.x >= x1min+(2*4)+(105*4) && location.x <= x1max+(2*4)+(105*4) && location.y >= y1min+(3*105)+(3*2) && location.y <= y1max+(3*105)+(3*2)){
+						text.setText("Vous êtes sur la pièce 4,5");
+					}
+					// colonne 1
+					else if(location.x >= x1min+(4*2) && location.x <= x1max+(4*2) && location.y >= y1min+(4*105) && location.y <= y1max+(4*105)){
+						text.setText("Vous êtes sur la pièce 5,1");
+					}
+					// ligne 5
+					else if(location.x >= x1min+(2*2)+105 && location.x <= x1max+(2*2)+105 && location.y >= y1min+(4*105)+2 && location.y <= y1max+(4*105)+2){
+						text.setText("Vous êtes sur la pièce 5,2");
+					}
+					else if(location.x >= x1min+(2*2)+(105*2) && location.x <= x1max+(2*2)+(105*2) && location.y >= y1min+(4*105)+(4*2) && location.y <= y1max+(4*105)+(4*2)){
+						text.setText("Vous êtes sur la pièce 5,3");
+					}
+					else if(location.x >= x1min+(2*3)+(105*3) && location.x <= x1max+(2*3)+(105*3) && location.y >= y1min+(4*105)+(4*2) && location.y <= y1max+(4*105)+(4*2)){
+						text.setText("Vous êtes sur la pièce 5,4");
+					}
+					else if(location.x >= x1min+(2*4)+(105*4) && location.x <= x1max+(2*4)+(105*4) && location.y >= y1min+(4*105)+(4*2) && location.y <= y1max+(4*105)+(4*2)){
+						text.setText("Vous êtes sur la pièce 5,5");
+					}
+				}
+				if(difficulte == 4){
+					// ligne 1
+					if(location.x >= x1min+(105*5) && location.x <= x1max+(105*5) && location.y >= y1min+(2*5) && location.y <= y1max+(2*5)){
+						text.setText("Vous êtes sur la pièce 1,6");
+					}
+					// ligne 2
+					else if(location.x >= x1min+2+(105*5) && location.x <= x1max+2+(105*5) && location.y >= y1min+105+(2*5) && location.y <= y1max+105+(2*5)){
+						text.setText("Vous êtes sur la pièce 2,6");
+					}
+					// ligne 3
+					else if(location.x >= x1min+(2*5)+(105*5) && location.x <= x1max+(2*5)+(105*5) && location.y >= y1min+(2*105)+(2*2) && location.y <= y1max+(2*105)+(2*2)){
+						text.setText("Vous êtes sur la pièce 3,6");
+					}
+					// ligne 4
+					else if(location.x >= x1min+(2*5)+(105*5) && location.x <= x1max+(2*5)+(105*5) && location.y >= y1min+(3*105)+(3*2) && location.y <= y1max+(3*105)+(3*2)){
+						text.setText("Vous êtes sur la pièce 4,6");
+					}
+					// ligne 5
+					else if(location.x >= x1min+(2*5)+(105*5) && location.x <= x1max+(2*5)+(105*5) && location.y >= y1min+(4*105)+(4*2) && location.y <= y1max+(4*105)+(4*2)){
+						text.setText("Vous êtes sur la pièce 5,6");
+					}
+					// colonne 1
+					else if(location.x >= x1min+(5*2) && location.x <= x1max+(5*2) && location.y >= y1min+(5*105) && location.y <= y1max+(5*105)){
+						text.setText("Vous êtes sur la pièce 6,1");
+					}
+					// ligne 5
+					else if(location.x >= x1min+(2*2)+105 && location.x <= x1max+(2*2)+105 && location.y >= y1min+(5*105)+2 && location.y <= y1max+(5*105)+2){
+						text.setText("Vous êtes sur la pièce 6,2");
+					}
+					else if(location.x >= x1min+(2*2)+(105*2) && location.x <= x1max+(2*2)+(105*2) && location.y >= y1min+(5*105)+(5*2) && location.y <= y1max+(5*105)+(5*2)){
+						text.setText("Vous êtes sur la pièce 6,3");
+					}
+					else if(location.x >= x1min+(2*3)+(105*3) && location.x <= x1max+(2*3)+(105*3) && location.y >= y1min+(5*105)+(5*2) && location.y <= y1max+(5*105)+(5*2)){
+						text.setText("Vous êtes sur la pièce 6,4");
+					}
+					else if(location.x >= x1min+(2*4)+(105*4) && location.x <= x1max+(2*4)+(105*4) && location.y >= y1min+(5*105)+(5*2) && location.y <= y1max+(5*105)+(5*2)){
+						text.setText("Vous êtes sur la pièce 6,5");
+					}
+					else if(location.x >= x1min+(2*5)+(105*5) && location.x <= x1max+(2*5)+(105*5) && location.y >= y1min+(5*105)+(5*2) && location.y <= y1max+(5*105)+(5*2)){
+						text.setText("Vous êtes sur la pièce 6,6");
+					}
+				}
+				text.repaint();
+			}
+			
+		});
 		
 		JPanel ajout = new JPanel();
 		ajout.setLayout(new BoxLayout(ajout, BoxLayout.PAGE_AXIS));
@@ -91,12 +265,9 @@ public class Plateau {
 		
 		JPanel position = new JPanel();
 		position.setLayout(new BoxLayout(position, BoxLayout.PAGE_AXIS));
-		JLabel text = new JLabel();
-	//	PointerInfo pointer = MouseInfo.getPointerInfo();
-	//	Point location = pointer.getLocation();
-		text.setText("Position : "+x+" : "+y);
+		text = new JLabel();
 		position.add(text);
-		position.setBorder(BorderFactory.createTitledBorder("Score"));
+		position.setBorder(BorderFactory.createTitledBorder("Position de la souris"));
 		
 		JPanel coups = new JPanel();
 		coups.setLayout(new BoxLayout(coups, BoxLayout.PAGE_AXIS));
