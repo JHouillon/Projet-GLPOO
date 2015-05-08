@@ -10,6 +10,7 @@ import java.awt.PointerInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import javax.swing.BorderFactory;
@@ -46,7 +47,8 @@ public class Plateau {
 	static Zone zone = new Zone(difficulte);
 	static Graphics g;
 	
-	static int x,y, nombre=0;
+	static int x,y;
+	static int nombre=0;
 	static int x1min=40, x1max=143, y1min=71, y1max=175;
 	
 	public Plateau(final String name, final JFrame fenetre, int difficulte){
@@ -94,18 +96,14 @@ public class Plateau {
 		GridLayout grille = new GridLayout(1,1);
 		pieces.setLayout(grille);
 		pieces.add(new Zone(difficulte));
-		pieces.addMouseMotionListener(new MouseMotionListener(){
+		pieces.addMouseListener(new MouseListener(){
 
-			public void mouseDragged(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent e)
+			{
 				// TODO Auto-generated method stub
-				nombre= MouseEvent.MOUSE_CLICKED;
-				nombre ++;
-				nb.setText("Vous êtes à "+nombre+" de coups");
-				nb.repaint();
-			}
-
-			public void mouseMoved(MouseEvent arg0) {
-				// TODO Auto-generated method stub
+				nombre++;
+				nb.setText("Votre nombre de coup : "+nombre);
+				
 				pointer = MouseInfo.getPointerInfo();
 				location = pointer.getLocation();
 			//	text.setText("Position : "+location.x+" ; "+location.y);
@@ -117,11 +115,12 @@ public class Plateau {
 				
 				else if(location.x >= x1min && location.x <= x1max && location.y >= y1min && location.y <= y1max){
 					text.setText("Vous êtes sur la pièce 1,1");
+					Zone.doTriangleN(20,20,g);
 				}
 				
-				/*
-				 * Position horizontale des pièces ligne1
-				 */
+				
+				 // Position horizontale des pièces ligne1
+				 
 				else if(location.x >= x1min+105 && location.x <= x1max+105 && location.y >= y1min+2 && location.y <= y1max+2){
 					text.setText("Vous êtes sur la pièce 1,2");
 				}
@@ -129,9 +128,9 @@ public class Plateau {
 					text.setText("Vous êtes sur la pièce 1,3");
 				}
 
-				/*
-				 * Position verticale des pièces colone 1
-				 */
+				
+				 // Position verticale des pièces colone 1
+				 
 				else if(location.x >= x1min+2 && location.x <= x1max+2 && location.y >= y1min+105 && location.y <= y1max+105){
 					text.setText("Vous êtes sur la pièce 2,1");
 				}
@@ -139,9 +138,9 @@ public class Plateau {
 					text.setText("Vous êtes sur la pièce 3,1");
 				}
 				
-				/*
-				 * Position horizontale des pièces ligne2
-				 */
+				
+				 // Position horizontale des pièces ligne2
+				 
 				else if(location.x >= x1min+2+105 && location.x <= x1max+2+105 && location.y >= y1min+105+2 && location.y <= y1max+105+2){
 					text.setText("Vous êtes sur la pièce 2,2");
 				}
@@ -149,9 +148,9 @@ public class Plateau {
 					text.setText("Vous êtes sur la pièce 2,3");
 				}
 				
-				/*
-				 * Position horizontale des pièces ligne3
-				 */
+				
+				 // Position horizontale des pièces ligne3
+				 
 				else if(location.x >= x1min+(2*2)+105 && location.x <= x1max+(2*2)+105 && location.y >= y1min+(2*105)+2 && location.y <= y1max+(2*105)+2){
 					text.setText("Vous êtes sur la pièce 3,2");
 				}
@@ -278,7 +277,26 @@ public class Plateau {
 				}
 				text.repaint();
 			}
-			
+
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
 		});
 		
 		JPanel ajout = new JPanel();
