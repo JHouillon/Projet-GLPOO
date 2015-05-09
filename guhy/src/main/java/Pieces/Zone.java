@@ -24,8 +24,8 @@ public class Zone extends JComponent {
 	int[] y_nord = {20, 20, 70};
 	int[] y_west = {20, 120, 70};
 	
-	static int X;
-	static int Y;
+	int face;
+	int click;
 	
 	int separation = 105;
 	int nombre;
@@ -40,8 +40,15 @@ public class Zone extends JComponent {
 		}
 	}
 	
-	public Zone(int N, int O, int S, int E){
-		
+	public Zone(int nombre, int face, int click)
+	{
+		this.nombre = nombre + 1;
+		if(nombre == 0 || nombre == 1)
+		{
+			nombre = 3;
+		}
+		this.face = face;
+		this.click = click;
 	}
 
 	protected void paintComponent(Graphics g)
@@ -63,6 +70,15 @@ public class Zone extends JComponent {
 	    	{
 			    verticalgauche(g);
 	    	}
+	    }
+	    
+	    if(face == 1 && click%2 == 1)
+	    {
+	    	doTriangleN(20,20,g);
+	    }
+	    else if(face == 1 && click%2 == 0)
+	    {
+	    	delTriangleN(20,20,g);
 	    }
 	}
 	
@@ -166,7 +182,14 @@ public class Zone extends JComponent {
 	public static void doTriangleN(int x, int y, Graphics g)
 	{
 		g.setColor(Color.ORANGE);
-		g.drawRect(x, y, 100, 100);
+		g.drawRect(x-1, y-1, 102, 102);
+		g.drawRect(x-2, y-2, 104, 104);
+		g.drawRect(x-3, y-3, 106, 106);
+	}
+	
+	public static void delTriangleN(int x, int y, Graphics g)
+	{
+		g.setColor(Color.getHSBColor(Color.RGBtoHSB(238, 238, 238, null)[0], Color.RGBtoHSB(238, 238, 238, null)[1], Color.RGBtoHSB(238, 238, 238, null)[2]));
 		g.drawRect(x-1, y-1, 102, 102);
 		g.drawRect(x-2, y-2, 104, 104);
 		g.drawRect(x-3, y-3, 106, 106);

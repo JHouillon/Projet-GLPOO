@@ -47,9 +47,10 @@ public class Plateau {
 	static Zone zone = new Zone(difficulte);
 	static Graphics g;
 	
-	static int x,y;
 	static int nombre=0;
 	static int x1min=40, x1max=143, y1min=71, y1max=175;
+	
+	static int click=0;
 	
 	public Plateau(final String name, final JFrame fenetre, int difficulte){
 		Plateau.name = name;
@@ -115,7 +116,9 @@ public class Plateau {
 				
 				else if(location.x >= x1min && location.x <= x1max && location.y >= y1min && location.y <= y1max){
 					text.setText("Vous êtes sur la pièce 1,1");
-					Zone.doTriangleN(20,20,g);
+					click++;
+					pieces.removeAll();
+					pieces.add(new Zone(difficulte, 1, click));
 				}
 				
 				
