@@ -11,81 +11,101 @@ public class Zone extends JComponent {
 	 * Génération automatique de l'id de la classe
 	 * 
 	 * Création des faces triangle par triangle
-	 */
+	 **/
 	private static final long serialVersionUID = 1001045674066908253L;	
 
-	int[] x_sud = {110, 170, 140};
-	int[] x_est = {170, 170, 140};
-	int[] x_nord = {170, 110, 140};
-	int[] x_west = {110, 110, 140};
+	int[] x_sud = {20, 120, 70};
+	int[] x_est = {120, 120, 70};
+	int[] x_nord = {120, 20, 70};
+	int[] x_west = {20, 20, 70};
 	
-	int[] y_sud = {60, 60, 30};
-	int[] y_est = {60, 0, 30};
-	int[] y_nord = {0, 0, 30};
-	int[] y_west = {0, 60, 30};
+	int[] y_sud = {120, 120, 70};
+	int[] y_est = {120, 20, 70};
+	int[] y_nord = {20, 20, 70};
+	int[] y_west = {20, 120, 70};
 	
+	int face;
+	int click;
+	
+	int separation = 105;
+	int nombre;
 
 	double rand ;
 	Color col = null;
 	
-	public Zone(int N, int O, int S, int E){
-		
+	public Zone(int nombre){
+		this.nombre = nombre + 1;
+		if(nombre == 0 || nombre == 1){
+			nombre = 3;
+		}
+	}
+	
+	public Zone(int nombre, int face, int click)
+	{
+		this.nombre = nombre + 1;
+		if(nombre == 0 || nombre == 1)
+		{
+			nombre = 3;
+		}
+		this.face = face;
+		this.click = click;
 	}
 
-	protected void paintComponent(Graphics g) {
+	protected void paintComponent(Graphics g)
+	{
+	    doTriangle(x_sud, y_sud, g);// SUD
+	    doTriangle(x_est, y_est, g);// EST
+	    doTriangle(x_nord, y_nord, g);// NORD
+	    doTriangle(x_west, y_west, g);// WEST
 	    
-		g.setColor(Color.BLUE);
-	    g.fillPolygon(x_sud, y_sud, 3);// SUD
-		g.setColor(Color.RED);
-	    g.fillPolygon(x_est, y_est, 3);// EST
-		g.setColor(Color.GREEN);
-	    g.fillPolygon(x_nord, y_nord, 3);// NORD
-		g.setColor(Color.BLACK);
-	    g.fillPolygon(x_west, y_west, 3);// WEST
-
-		//g.copyArea(110, 0, 60, 60, 60, 60);
-	    
-	    for(int l=0;l<5;l++){
-	    	for(int i=0; i<5; i++){
-		    	verticaldroite(g);
-		    }
+	    for(int i=0;i<nombre;i++)
+	    {
+	    	for(int j=0; j<nombre; j++)
+	    	{
+			    verticaldroite(g);
+	    	}
+	    	
 		    horizontal(g);
-		    for(int i=0; i<5; i++){
-		    	verticalgauche(g);
-		    }
+		    for(int j=0; j<nombre; j++)
+	    	{
+			    verticalgauche(g);
+	    	}
 	    }
 	    
-	    
+	    if(face == 1 && click%2 == 1)
+	    {
+	    	doTriangleN(20,20,g);
+	    }
+	    else if(face == 1 && click%2 == 0)
+	    {
+	    	delTriangleN(20,20,g);
+	    }
+	}
+	
+	public void inverser(Graphics g){
+		
 	}
 
 	public void verticaldroite(Graphics g){
 		
 		
 		for(int i=0; i<x_sud.length;i++){
-			x_sud[i] = x_sud[i]+120;
+			x_sud[i] = x_sud[i]+separation;
 		}
 		for(int i=0; i<x_sud.length;i++){
-			x_nord[i] = x_nord[i]+120;
+			x_nord[i] = x_nord[i]+separation;
 		}
 		for(int i=0; i<x_sud.length;i++){
-			x_est[i] = x_est[i]+120;
+			x_est[i] = x_est[i]+separation;
 		}
 		for(int i=0; i<x_sud.length;i++){
-			x_west[i] = x_west[i]+120;
+			x_west[i] = x_west[i]+separation;
 		}
-		
-		CouleurRandom();		
-		g.setColor(col);
-	    g.fillPolygon(x_sud, y_sud, 3);// SUD
-	    CouleurRandom();
-		g.setColor(col);
-	    g.fillPolygon(x_est, y_est, 3);// EST
-	    CouleurRandom();
-		g.setColor(col);
-	    g.fillPolygon(x_nord, y_nord, 3);// NORD
-	    CouleurRandom();
-		g.setColor(col);
-	    g.fillPolygon(x_west, y_west, 3);// WEST
+
+	    doTriangle(x_sud, y_sud, g);// SUD
+	    doTriangle(x_est, y_est, g);// EST
+	    doTriangle(x_nord, y_nord, g);// NORD
+	    doTriangle(x_west, y_west, g);// WEST
 	    
 
     	//g.copyArea(x_sud[0], y_est[1], y_sud[0], y_sud[0], y_sud[0], y_sud[0]);
@@ -94,29 +114,22 @@ public class Zone extends JComponent {
 	public void verticalgauche(Graphics g){
 
 		for(int i=0; i<x_sud.length;i++){
-			x_sud[i] = x_sud[i]-120;
+			x_sud[i] = x_sud[i]-separation;
 		}
 		for(int i=0; i<x_sud.length;i++){
-			x_nord[i] = x_nord[i]-120;
+			x_nord[i] = x_nord[i]-separation;
 		}
 		for(int i=0; i<x_sud.length;i++){
-			x_est[i] = x_est[i]-120;
+			x_est[i] = x_est[i]-separation;
 		}
 		for(int i=0; i<x_sud.length;i++){
-			x_west[i] = x_west[i]-120;
+			x_west[i] = x_west[i]-separation;
 		}
-		CouleurRandom();		
-		g.setColor(col);
-	    g.fillPolygon(x_sud, y_sud, 3);// SUD
-	    CouleurRandom();
-		g.setColor(col);
-	    g.fillPolygon(x_est, y_est, 3);// EST
-	    CouleurRandom();
-		g.setColor(col);
-	    g.fillPolygon(x_nord, y_nord, 3);// NORD
-	    CouleurRandom();
-		g.setColor(col);
-	    g.fillPolygon(x_west, y_west, 3);// WEST
+
+	    doTriangle(x_sud, y_sud, g);// SUD
+	    doTriangle(x_est, y_est, g);// EST
+	    doTriangle(x_nord, y_nord, g);// NORD
+	    doTriangle(x_west, y_west, g);// WEST
 	    
 
     	//g.copyArea(x_sud[0], y_est[1], y_sud[0], y_sud[0], y_sud[0], y_sud[0]);
@@ -125,34 +138,27 @@ public class Zone extends JComponent {
 	
 	public void horizontal(Graphics g){
 		 for(int i=0; i<y_sud.length;i++){
-				y_sud[i] = y_sud[i]+120;
+				y_sud[i] = y_sud[i]+separation;
 			}
 			for(int i=0; i<x_sud.length;i++){
-				y_nord[i] = y_nord[i]+120;
+				y_nord[i] = y_nord[i]+separation;
 			}
 			for(int i=0; i<x_sud.length;i++){
-				y_est[i] = y_est[i]+120;
+				y_est[i] = y_est[i]+separation;
 			}
 			for(int i=0; i<x_sud.length;i++){
-				y_west[i] = y_west[i]+120;
+				y_west[i] = y_west[i]+separation;
 			}
-			CouleurRandom();		
-			g.setColor(col);
-		    g.fillPolygon(x_sud, y_sud, 3);// SUD
-		    CouleurRandom();
-			g.setColor(col);
-		    g.fillPolygon(x_est, y_est, 3);// EST
-		    CouleurRandom();
-			g.setColor(col);
-		    g.fillPolygon(x_nord, y_nord, 3);// NORD
-		    CouleurRandom();
-			g.setColor(col);
-		    g.fillPolygon(x_west, y_west, 3);// WEST
+			
+		    doTriangle(x_sud, y_sud, g);// SUD
+		    doTriangle(x_est, y_est, g);// EST
+		    doTriangle(x_nord, y_nord, g);// NORD
+		    doTriangle(x_west, y_west, g);// WEST
 	}
 	
 	public void CouleurRandom() {
 		
-		rand = Math.random();
+		int rand = (int) (Math.random()*4);
 		if(rand == 0)
 			col = Color.RED;
 		else if(rand==1)
@@ -161,5 +167,31 @@ public class Zone extends JComponent {
 			col = Color.BLUE;
 		else if(rand==3)
 			col = Color.BLACK;
+	}
+	
+	public void doTriangle(int[] x, int[]y, Graphics g)
+	{
+		CouleurRandom();
+		g.setColor(col);
+		g.fillPolygon(x, y, 3);
+		col = Color.BLACK;		
+		g.setColor(col);
+		g.drawPolygon(x, y, 3);
+	}
+	
+	public static void doTriangleN(int x, int y, Graphics g)
+	{
+		g.setColor(Color.ORANGE);
+		g.drawRect(x-1, y-1, 102, 102);
+		g.drawRect(x-2, y-2, 104, 104);
+		g.drawRect(x-3, y-3, 106, 106);
+	}
+	
+	public static void delTriangleN(int x, int y, Graphics g)
+	{
+		g.setColor(Color.getHSBColor(Color.RGBtoHSB(238, 238, 238, null)[0], Color.RGBtoHSB(238, 238, 238, null)[1], Color.RGBtoHSB(238, 238, 238, null)[2]));
+		g.drawRect(x-1, y-1, 102, 102);
+		g.drawRect(x-2, y-2, 104, 104);
+		g.drawRect(x-3, y-3, 106, 106);
 	}
 }
