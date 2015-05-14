@@ -11,7 +11,7 @@ import Pieces.Zone;
 public class Plateau {
 	
 	Pieces [] piecesTab;
-	static Zone zone = new Zone();
+//	static Zone zone = new Zone();
 	
 	int nbCaseTotalTab=100;
 	
@@ -55,7 +55,7 @@ public class Plateau {
 		fenetre.setJMenuBar(menu);
 		//fenetre.getContentPane().add(pan, BorderLayout.EAST);
 		//fenetre.getContentPane().add(pan1, BorderLayout.WEST);
-		fenetre.getContentPane().add(zone);
+		//fenetre.getContentPane().add(zone);
 		fenetre.setLayout(new GridLayout(1,2));
 		fenetre.setVisible(true);
 	}
