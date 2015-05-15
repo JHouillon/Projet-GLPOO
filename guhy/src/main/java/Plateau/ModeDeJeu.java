@@ -52,7 +52,8 @@ public class ModeDeJeu {
 	
 	static String name;
 	static JFrame mdj;
-	static int n = 2;
+	static int n = 1;
+    static int type = 0;
 	
 	/**
 	 * Constructeur permettant la récupération des valeurs de la fenêtre de lancement
@@ -102,42 +103,30 @@ public class ModeDeJeu {
 		pan1.setBorder(BorderFactory.createTitledBorder("Choix du plateau et de la difficulté"));
 		pan1.setLayout(new BoxLayout(pan1, BoxLayout.Y_AXIS));
 		
-		plateau_carre.setText("Carrée (défaut)");
-		plateau_triangle.setText("Triangle");
-		plateau_losange.setText("Losange");
-		choix.add(plateau_carre);
-		choix.add(plateau_triangle);
-		choix.add(plateau_losange);
-		
 		titre.setText("Choix de la difficulté");
 		niveau.setPaintTicks(true);
-		niveau.setBackground(Color.YELLOW);
+		niveau.setBackground(Color.ORANGE);
 		niveau.addChangeListener(new ChangeListener(){
 			public void stateChanged(ChangeEvent arg0) {
-				n = niveau.getValue();
-				if(n<=1){					
-					niveau.setBackground(Color.GREEN);
-					titre.setText("Débutant : 3x3");
-				}
-				else if(n<=2 && n>1){
+				if(niveau.getValue()<=1){
+					n = 0;
 					niveau.setBackground(Color.YELLOW);
-					titre.setText("Moyen : 4x4");					
+					titre.setText("Carré : 4x4");
 				}					
-				else if(n<=3 && n>2){
+				else if(niveau.getValue()<=2 && niveau.getValue()>1){
+					n = 1;
 					niveau.setBackground(Color.ORANGE);
-					titre.setText("Difficile : 5x5");
+					titre.setText("Autre : 6x4");
 				}					
 				else{
+					n = 2;
 					niveau.setBackground(Color.RED);
-					titre.setText("Expert : 6x6");
+					titre.setText("Losange : 5x5");
 				}
 					
 			}
 		});
-		
-		pan1.add(plateau_carre);
-		pan1.add(plateau_triangle);
-		pan1.add(plateau_losange);
+
 		pan1.add(titre);
 		pan1.add(niveau);
 		pan1.add(valider);

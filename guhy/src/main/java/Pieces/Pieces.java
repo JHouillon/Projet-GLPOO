@@ -7,153 +7,1811 @@ import Plateau.Plateau;
 
 public class Pieces {
 	
-	int id;
+	private int id;
 	
-	int type;
-	// 1 bord
-	// 2 coin
-	// 3 normal
+	private int[] x_sud = new int[3];
+	private int[] x_est = new int[3];
+	private int[] x_nord = new int[3];
+	private int[] x_west = new int[3];
 	
-	int N_face;
-	int O_face;
-	int S_face;
-	int E_face;
+	private int[] y_sud = new int[3];
+	private int[] y_est = new int[3];
+	private int[] y_nord = new int[3];
+	private int[] y_west = new int[3];
+	private String[] couleur = new String[4];
 	
-	int orientation;
+	private int separation = 105;
 	
-	int posx;
-	int posy;
-	
-	
-	public Pieces(int N, int O, int S, int E, int posx, int posy) {
-		
-		this.N_face=N;
-		this.O_face=O;
-		this.S_face=S;
-		this.E_face=E;	
-		
-		this.orientation=0;
-		
-		this.posx=posx;
-		this.posy=posy;
-		
-	
-		
-		//this.pieces_tab = tab;
+	public Pieces(int id, int t)
+	{
+		if(id == 1)
+		{
+            if(t == 0)
+            {
+                this.x_sud[0] = 20;
+			    this.x_sud[1] = 120;
+			    this.x_sud[2] = 70;
+			    this.x_est[0] = 120;
+			    this.x_est[1] = 120;
+			    this.x_est[2] = 70;
+			    this.x_nord[0] = 120;
+			    this.x_nord[1] = 20;
+			    this.x_nord[2] = 70;
+			    this.x_west[0] = 20;
+			    this.x_west[1] = 20;
+			    this.x_west[2] = 70;
+
+			    this.y_sud[0] = 120;
+			    this.y_sud[1] = 120;
+			    this.y_sud[2] = 70;
+			    this.y_est[0] = 120;
+			    this.y_est[1] = 20;
+			    this.y_est[2] = 70;
+			    this.y_nord[0] = 20;
+			    this.y_nord[1] = 20;
+			    this.y_nord[2] = 70;
+			    this.y_west[0] = 20;
+			    this.y_west[1] = 120;
+			    this.y_west[2] = 70;
+			
+			    this.couleur[0] = "V";
+			    this.couleur[1] = "R";
+			    this.couleur[2] = "B";
+			    this.couleur[3] = "V";
+            }
+            else if(t == 1)
+            {
+                this.x_sud[0] = 20+separation*2;
+			    this.x_sud[1] = 120+separation*2;
+			    this.x_sud[2] = 70+separation*2;
+			    this.x_est[0] = 120+separation*2;
+			    this.x_est[1] = 120+separation*2;
+			    this.x_est[2] = 70+separation*2;
+			    this.x_nord[0] = 120+separation*2;
+			    this.x_nord[1] = 20+separation*2;
+			    this.x_nord[2] = 70+separation*2;
+			    this.x_west[0] = 20+separation*2;
+			    this.x_west[1] = 20+separation*2;
+			    this.x_west[2] = 70+separation*2;
+
+			    this.y_sud[0] = 120;
+			    this.y_sud[1] = 120;
+			    this.y_sud[2] = 70;
+			    this.y_est[0] = 120;
+			    this.y_est[1] = 20;
+			    this.y_est[2] = 70;
+			    this.y_nord[0] = 20;
+			    this.y_nord[1] = 20;
+			    this.y_nord[2] = 70;
+			    this.y_west[0] = 20;
+			    this.y_west[1] = 120;
+			    this.y_west[2] = 70;
+			
+			    this.couleur[0] = "V";
+			    this.couleur[1] = "V";
+			    this.couleur[2] = "R";
+			    this.couleur[3] = "V";
+            }
+            else if(t == 2)
+            {
+                this.x_sud[0] = 20+separation*2;
+			    this.x_sud[1] = 120+separation*2;
+			    this.x_sud[2] = 70+separation*2;
+			    this.x_est[0] = 120+separation*2;
+			    this.x_est[1] = 120+separation*2;
+			    this.x_est[2] = 70+separation*2;
+			    this.x_nord[0] = 120+separation*2;
+			    this.x_nord[1] = 20+separation*2;
+			    this.x_nord[2] = 70+separation*2;
+			    this.x_west[0] = 20+separation*2;
+			    this.x_west[1] = 20+separation*2;
+			    this.x_west[2] = 70+separation*2;
+
+			    this.y_sud[0] = 120;
+			    this.y_sud[1] = 120;
+			    this.y_sud[2] = 70;
+			    this.y_est[0] = 120;
+			    this.y_est[1] = 20;
+			    this.y_est[2] = 70;
+			    this.y_nord[0] = 20;
+			    this.y_nord[1] = 20;
+			    this.y_nord[2] = 70;
+			    this.y_west[0] = 20;
+			    this.y_west[1] = 120;
+			    this.y_west[2] = 70;
+			
+			    this.couleur[0] = "B";
+			    this.couleur[1] = "R";
+			    this.couleur[2] = "V";
+			    this.couleur[3] = "R";
+            }
+		}
+		else if(id == 2)
+		{
+            if(t == 0)
+            {
+                this.x_sud[0] = 20+separation;
+			    this.x_sud[1] = 120+separation;
+			    this.x_sud[2] = 70+separation;
+			    this.x_est[0] = 120+separation;
+			    this.x_est[1] = 120+separation;
+			    this.x_est[2] = 70+separation;
+			    this.x_nord[0] = 120+separation;
+			    this.x_nord[1] = 20+separation;
+			    this.x_nord[2] = 70+separation;
+			    this.x_west[0] = 20+separation;
+			    this.x_west[1] = 20+separation;
+			    this.x_west[2] = 70+separation;
+
+			    this.y_sud[0] = 120;
+			    this.y_sud[1] = 120;
+			    this.y_sud[2] = 70;
+			    this.y_est[0] = 120;
+			    this.y_est[1] = 20;
+			    this.y_est[2] = 70;
+			    this.y_nord[0] = 20;
+			    this.y_nord[1] = 20;
+			    this.y_nord[2] = 70;
+			    this.y_west[0] = 20;
+			    this.y_west[1] = 120;
+			    this.y_west[2] = 70;
+			
+			    this.couleur[0] =  "V";
+			    this.couleur[1] = "R";
+			    this.couleur[2] = "V";
+			    this.couleur[3] = "B";
+            }
+            else if(t == 1)
+            {
+                this.x_sud[0] = 20+separation*3;
+			    this.x_sud[1] = 120+separation*3;
+			    this.x_sud[2] = 70+separation*3;
+			    this.x_est[0] = 120+separation*3;
+			    this.x_est[1] = 120+separation*3;
+			    this.x_est[2] = 70+separation*3;
+			    this.x_nord[0] = 120+separation*3;
+			    this.x_nord[1] = 20+separation*3;
+			    this.x_nord[2] = 70+separation*3;
+			    this.x_west[0] = 20+separation*3;
+			    this.x_west[1] = 20+separation*3;
+			    this.x_west[2] = 70+separation*3;
+
+			    this.y_sud[0] = 120;
+			    this.y_sud[1] = 120;
+			    this.y_sud[2] = 70;
+			    this.y_est[0] = 120;
+			    this.y_est[1] = 20;
+			    this.y_est[2] = 70;
+			    this.y_nord[0] = 20;
+			    this.y_nord[1] = 20;
+			    this.y_nord[2] = 70;
+			    this.y_west[0] = 20;
+			    this.y_west[1] = 120;
+			    this.y_west[2] = 70;
+			
+			    this.couleur[0] = "N";
+			    this.couleur[1] = "R";
+			    this.couleur[2] = "N";
+			    this.couleur[3] = "N";
+            }
+            else if(t == 2)
+            {
+                this.x_sud[0] = 20+separation*3;
+			    this.x_sud[1] = 120+separation*3;
+			    this.x_sud[2] = 70+separation*3;
+			    this.x_est[0] = 120+separation*3;
+			    this.x_est[1] = 120+separation*3;
+			    this.x_est[2] = 70+separation*3;
+			    this.x_nord[0] = 120+separation*3;
+			    this.x_nord[1] = 20+separation*3;
+			    this.x_nord[2] = 70+separation*3;
+			    this.x_west[0] = 20+separation*3;
+			    this.x_west[1] = 20+separation*3;
+			    this.x_west[2] = 70+separation*3;
+
+			    this.y_sud[0] = 120;
+			    this.y_sud[1] = 120;
+			    this.y_sud[2] = 70;
+			    this.y_est[0] = 120;
+			    this.y_est[1] = 20;
+			    this.y_est[2] = 70;
+			    this.y_nord[0] = 20;
+			    this.y_nord[1] = 20;
+			    this.y_nord[2] = 70;
+			    this.y_west[0] = 20;
+			    this.y_west[1] = 120;
+			    this.y_west[2] = 70;
+			
+			    this.couleur[0] =  "B";
+			    this.couleur[1] = "B";
+			    this.couleur[2] = "B";
+			    this.couleur[3] = "V";
+            }
+		}
+		else if(id == 3)
+		{
+            if(t == 0)
+            {
+                this.x_sud[0] = 20+separation*2;
+			    this.x_sud[1] = 120+separation*2;
+			    this.x_sud[2] = 70+separation*2;
+			    this.x_est[0] = 120+separation*2;
+			    this.x_est[1] = 120+separation*2;
+			    this.x_est[2] = 70+separation*2;
+			    this.x_nord[0] = 120+separation*2;
+			    this.x_nord[1] = 20+separation*2;
+			    this.x_nord[2] = 70+separation*2;
+			    this.x_west[0] = 20+separation*2;
+			    this.x_west[1] = 20+separation*2;
+			    this.x_west[2] = 70+separation*2;
+
+			    this.y_sud[0] = 120;
+			    this.y_sud[1] = 120;
+			    this.y_sud[2] = 70;
+			    this.y_est[0] = 120;
+			    this.y_est[1] = 20;
+			    this.y_est[2] = 70;
+			    this.y_nord[0] = 20;
+			    this.y_nord[1] = 20;
+			    this.y_nord[2] = 70;
+			    this.y_west[0] = 20;
+			    this.y_west[1] = 120;
+			    this.y_west[2] = 70;
+
+			    this.couleur[0] = "R";
+			    this.couleur[1] = "R";
+			    this.couleur[2] = "V";
+			    this.couleur[3] = "N";
+            }
+            else if(t == 1)
+            {
+                this.x_sud[0] = 20;
+			    this.x_sud[1] = 120;
+			    this.x_sud[2] = 70;
+			    this.x_est[0] = 120;
+			    this.x_est[1] = 120;
+			    this.x_est[2] = 70;
+			    this.x_nord[0] = 120;
+			    this.x_nord[1] = 20;
+			    this.x_nord[2] = 70;
+			    this.x_west[0] = 20;
+			    this.x_west[1] = 20;
+			    this.x_west[2] = 70;
+
+			    this.y_sud[0] = 120+separation;
+			    this.y_sud[1] = 120+separation;
+			    this.y_sud[2] = 70+separation;
+			    this.y_est[0] = 120+separation;
+			    this.y_est[1] = 20+separation;
+			    this.y_est[2] = 70+separation;
+			    this.y_nord[0] = 20+separation;
+			    this.y_nord[1] = 20+separation;
+			    this.y_nord[2] = 70+separation;
+			    this.y_west[0] = 20+separation;
+			    this.y_west[1] = 120+separation;
+			    this.y_west[2] = 70+separation;
+
+			    this.couleur[0] = "N";
+			    this.couleur[1] = "V";
+			    this.couleur[2] = "N";
+			    this.couleur[3] = "N";
+            }
+            else if(t == 2)
+            {
+                this.x_sud[0] = 20+separation;
+			    this.x_sud[1] = 120+separation;
+			    this.x_sud[2] = 70+separation;
+			    this.x_est[0] = 120+separation;
+			    this.x_est[1] = 120+separation;
+			    this.x_est[2] = 70+separation;
+			    this.x_nord[0] = 120+separation;
+			    this.x_nord[1] = 20+separation;
+			    this.x_nord[2] = 70+separation;
+			    this.x_west[0] = 20+separation;
+			    this.x_west[1] = 20+separation;
+			    this.x_west[2] = 70+separation;
+
+			    this.y_sud[0] = 120+separation;
+			    this.y_sud[1] = 120+separation;
+			    this.y_sud[2] = 70+separation;
+			    this.y_est[0] = 120+separation;
+			    this.y_est[1] = 20+separation;
+			    this.y_est[2] = 70+separation;
+			    this.y_nord[0] = 20+separation;
+			    this.y_nord[1] = 20+separation;
+			    this.y_nord[2] = 70+separation;
+			    this.y_west[0] = 20+separation;
+			    this.y_west[1] = 120+separation;
+			    this.y_west[2] = 70+separation;
+
+			    this.couleur[0] = "R";
+			    this.couleur[1] = "B";
+			    this.couleur[2] = "V";
+			    this.couleur[3] = "V";
+            }
+		}
+		else if(id == 4)
+		{
+            if(t == 0)
+            {
+                this.x_sud[0] = 20+separation*3;
+			    this.x_sud[1] = 120+separation*3;
+			    this.x_sud[2] = 70+separation*3;
+			    this.x_est[0] = 120+separation*3;
+			    this.x_est[1] = 120+separation*3;
+			    this.x_est[2] = 70+separation*3;
+			    this.x_nord[0] = 120+separation*3;
+			    this.x_nord[1] = 20+separation*3;
+			    this.x_nord[2] = 70+separation*3;
+			    this.x_west[0] = 20+separation*3;
+			    this.x_west[1] = 20+separation*3;
+			    this.x_west[2] = 70+separation*3;
+
+			    this.y_sud[0] = 120;
+			    this.y_sud[1] = 120;
+			    this.y_sud[2] = 70;
+			    this.y_est[0] = 120;
+			    this.y_est[1] = 20;
+			    this.y_est[2] = 70;
+			    this.y_nord[0] = 20;
+			    this.y_nord[1] = 20;
+			    this.y_nord[2] = 70;
+			    this.y_west[0] = 20;
+			    this.y_west[1] = 120;
+			    this.y_west[2] = 70;
+
+			    this.couleur[0] = "N";
+			    this.couleur[1] = "V";
+			    this.couleur[2] = "V";
+			    this.couleur[3] = "B";
+            }
+            else if(t == 1)
+            {
+                this.x_sud[0] = 20+separation;
+			    this.x_sud[1] = 120+separation;
+			    this.x_sud[2] = 70+separation;
+			    this.x_est[0] = 120+separation;
+			    this.x_est[1] = 120+separation;
+			    this.x_est[2] = 70+separation;
+			    this.x_nord[0] = 120+separation;
+			    this.x_nord[1] = 20+separation;
+			    this.x_nord[2] = 70+separation;
+			    this.x_west[0] = 20+separation;
+			    this.x_west[1] = 20+separation;
+			    this.x_west[2] = 70+separation;
+
+			    this.y_sud[0] = 120+separation;
+			    this.y_sud[1] = 120+separation;
+			    this.y_sud[2] = 70+separation;
+			    this.y_est[0] = 120+separation;
+			    this.y_est[1] = 20+separation;
+			    this.y_est[2] = 70+separation;
+			    this.y_nord[0] = 20+separation;
+			    this.y_nord[1] = 20+separation;
+			    this.y_nord[2] = 70+separation;
+			    this.y_west[0] = 20+separation;
+			    this.y_west[1] = 120+separation;
+			    this.y_west[2] = 70+separation;
+
+			    this.couleur[0] = "N";
+			    this.couleur[1] = "R";
+			    this.couleur[2] = "N";
+			    this.couleur[3] = "N";
+            }
+            else if(t == 2)
+            {
+                this.x_sud[0] = 20+separation*2;
+			    this.x_sud[1] = 120+separation*2;
+			    this.x_sud[2] = 70+separation*2;
+			    this.x_est[0] = 120+separation*2;
+			    this.x_est[1] = 120+separation*2;
+			    this.x_est[2] = 70+separation*2;
+			    this.x_nord[0] = 120+separation*2;
+			    this.x_nord[1] = 20+separation*2;
+			    this.x_nord[2] = 70+separation*2;
+			    this.x_west[0] = 20+separation*2;
+			    this.x_west[1] = 20+separation*2;
+			    this.x_west[2] = 70+separation*2;
+
+			    this.y_sud[0] = 120+separation;
+			    this.y_sud[1] = 120+separation;
+			    this.y_sud[2] = 70+separation;
+			    this.y_est[0] = 120+separation;
+			    this.y_est[1] = 20+separation;
+			    this.y_est[2] = 70+separation;
+			    this.y_nord[0] = 20+separation;
+			    this.y_nord[1] = 20+separation;
+			    this.y_nord[2] = 70+separation;
+			    this.y_west[0] = 20+separation;
+			    this.y_west[1] = 120+separation;
+			    this.y_west[2] = 70+separation;
+
+			    this.couleur[0] = "B";
+			    this.couleur[1] = "N";
+			    this.couleur[2] = "N";
+			    this.couleur[3] = "V";
+            }
+		}
+		else if(id == 5)
+		{
+            if(t == 0)
+            {
+                this.x_sud[0] = 20;
+			    this.x_sud[1] = 120;
+			    this.x_sud[2] = 70;
+			    this.x_est[0] = 120;
+			    this.x_est[1] = 120;
+			    this.x_est[2] = 70;
+			    this.x_nord[0] = 120;
+			    this.x_nord[1] = 20;
+			    this.x_nord[2] = 70;
+			    this.x_west[0] = 20;
+			    this.x_west[1] = 20;
+			    this.x_west[2] = 70;
+
+			    this.y_sud[0] = 120+separation;
+			    this.y_sud[1] = 120+separation;
+			    this.y_sud[2] = 70+separation;
+			    this.y_est[0] = 120+separation;
+			    this.y_est[1] = 20+separation;
+			    this.y_est[2] = 70+separation;
+			    this.y_nord[0] = 20+separation;
+			    this.y_nord[1] = 20+separation;
+			    this.y_nord[2] = 70+separation;
+			    this.y_west[0] = 20+separation;
+			    this.y_west[1] = 120+separation;
+			    this.y_west[2] = 70+separation;
+
+			    this.couleur[0] = "N";
+			    this.couleur[1] = "R";
+			    this.couleur[2] = "B";
+			    this.couleur[3] = "N";
+            }
+            else if(t == 1)
+            {
+                this.x_sud[0] = 20+separation*2;
+			    this.x_sud[1] = 120+separation*2;
+			    this.x_sud[2] = 70+separation*2;
+			    this.x_est[0] = 120+separation*2;
+			    this.x_est[1] = 120+separation*2;
+			    this.x_est[2] = 70+separation*2;
+			    this.x_nord[0] = 120+separation*2;
+			    this.x_nord[1] = 20+separation*2;
+			    this.x_nord[2] = 70+separation*2;
+			    this.x_west[0] = 20+separation*2;
+			    this.x_west[1] = 20+separation*2;
+			    this.x_west[2] = 70+separation*2;
+
+			    this.y_sud[0] = 120+separation;
+			    this.y_sud[1] = 120+separation;
+			    this.y_sud[2] = 70+separation;
+			    this.y_est[0] = 120+separation;
+			    this.y_est[1] = 20+separation;
+			    this.y_est[2] = 70+separation;
+			    this.y_nord[0] = 20+separation;
+			    this.y_nord[1] = 20+separation;
+			    this.y_nord[2] = 70+separation;
+			    this.y_west[0] = 20+separation;
+			    this.y_west[1] = 120+separation;
+			    this.y_west[2] = 70+separation;
+
+			    this.couleur[0] = "B";
+			    this.couleur[1] = "N";
+			    this.couleur[2] = "R";
+			    this.couleur[3] = "R";
+            }
+            else if(t == 2)
+            {
+                this.x_sud[0] = 20+separation*3;
+			    this.x_sud[1] = 120+separation*3;
+			    this.x_sud[2] = 70+separation*3;
+			    this.x_est[0] = 120+separation*3;
+			    this.x_est[1] = 120+separation*3;
+			    this.x_est[2] = 70+separation*3;
+			    this.x_nord[0] = 120+separation*3;
+			    this.x_nord[1] = 20+separation*3;
+			    this.x_nord[2] = 70+separation*3;
+			    this.x_west[0] = 20+separation*3;
+			    this.x_west[1] = 20+separation*3;
+			    this.x_west[2] = 70+separation*3;
+
+			    this.y_sud[0] = 120+separation;
+			    this.y_sud[1] = 120+separation;
+			    this.y_sud[2] = 70+separation;
+			    this.y_est[0] = 120+separation;
+			    this.y_est[1] = 20+separation;
+			    this.y_est[2] = 70+separation;
+			    this.y_nord[0] = 20+separation;
+			    this.y_nord[1] = 20+separation;
+			    this.y_nord[2] = 70+separation;
+			    this.y_west[0] = 20+separation;
+			    this.y_west[1] = 120+separation;
+			    this.y_west[2] = 70+separation;
+
+			    this.couleur[0] = "N";
+			    this.couleur[1] = "V";
+			    this.couleur[2] = "B";
+			    this.couleur[3] = "N";
+            }
+		}
+		else if(id == 6)
+		{
+            if(t == 0)
+            {
+			    this.x_sud[0] = 20+separation;
+			    this.x_sud[1] = 120+separation;
+			    this.x_sud[2] = 70+separation;
+			    this.x_est[0] = 120+separation;
+			    this.x_est[1] = 120+separation;
+			    this.x_est[2] = 70+separation;
+			    this.x_nord[0] = 120+separation;
+			    this.x_nord[1] = 20+separation;
+			    this.x_nord[2] = 70+separation;
+			    this.x_west[0] = 20+separation;
+			    this.x_west[1] = 20+separation;
+			    this.x_west[2] = 70+separation;
+
+			    this.y_sud[0] = 120+separation;
+			    this.y_sud[1] = 120+separation;
+			    this.y_sud[2] = 70+separation;
+			    this.y_est[0] = 120+separation;
+			    this.y_est[1] = 20+separation;
+			    this.y_est[2] = 70+separation;
+			    this.y_nord[0] = 20+separation;
+			    this.y_nord[1] = 20+separation;
+			    this.y_nord[2] = 70+separation;
+			    this.y_west[0] = 20+separation;
+			    this.y_west[1] = 120+separation;
+			    this.y_west[2] = 70+separation;
+			
+			    this.couleur[0] = "R";
+			    this.couleur[1] = "B";
+			    this.couleur[2] = "R";
+			    this.couleur[3] = "V";
+            }
+            else if(t == 1)
+            {
+                this.x_sud[0] = 20+separation*3;
+			    this.x_sud[1] = 120+separation*3;
+			    this.x_sud[2] = 70+separation*3;
+			    this.x_est[0] = 120+separation*3;
+			    this.x_est[1] = 120+separation*3;
+			    this.x_est[2] = 70+separation*3;
+			    this.x_nord[0] = 120+separation*3;
+			    this.x_nord[1] = 20+separation*3;
+			    this.x_nord[2] = 70+separation*3;
+			    this.x_west[0] = 20+separation*3;
+			    this.x_west[1] = 20+separation*3;
+			    this.x_west[2] = 70+separation*3;
+
+			    this.y_sud[0] = 120+separation;
+			    this.y_sud[1] = 120+separation;
+			    this.y_sud[2] = 70+separation;
+			    this.y_est[0] = 120+separation;
+			    this.y_est[1] = 20+separation;
+			    this.y_est[2] = 70+separation;
+			    this.y_nord[0] = 20+separation;
+			    this.y_nord[1] = 20+separation;
+			    this.y_nord[2] = 70+separation;
+			    this.y_west[0] = 20+separation;
+			    this.y_west[1] = 120+separation;
+			    this.y_west[2] = 70+separation;
+			
+			    this.couleur[0] = "N";
+			    this.couleur[1] = "B";
+			    this.couleur[2] = "V";
+			    this.couleur[3] = "B";
+            }
+            else if(t == 2)
+            {
+                this.x_sud[0] = 20+separation*4;
+			    this.x_sud[1] = 120+separation*4;
+			    this.x_sud[2] = 70+separation*4;
+			    this.x_est[0] = 120+separation*4;
+			    this.x_est[1] = 120+separation*4;
+			    this.x_est[2] = 70+separation*4;
+			    this.x_nord[0] = 120+separation*4;
+			    this.x_nord[1] = 20+separation*4;
+			    this.x_nord[2] = 70+separation*4;
+			    this.x_west[0] = 20+separation*4;
+			    this.x_west[1] = 20+separation*4;
+			    this.x_west[2] = 70+separation*4;
+
+			    this.y_sud[0] = 120+separation;
+			    this.y_sud[1] = 120+separation;
+			    this.y_sud[2] = 70+separation;
+			    this.y_est[0] = 120+separation;
+			    this.y_est[1] = 20+separation;
+			    this.y_est[2] = 70+separation;
+			    this.y_nord[0] = 20+separation;
+			    this.y_nord[1] = 20+separation;
+			    this.y_nord[2] = 70+separation;
+			    this.y_west[0] = 20+separation;
+			    this.y_west[1] = 120+separation;
+			    this.y_west[2] = 70+separation;
+			
+			    this.couleur[0] = "R";
+			    this.couleur[1] = "B";
+			    this.couleur[2] = "V";
+			    this.couleur[3] = "R";
+            }
+		}
+		else if(id == 7)
+		{
+            if(t == 0)
+            {
+                this.x_sud[0] = 20+separation*2;
+			    this.x_sud[1] = 120+separation*2;
+			    this.x_sud[2] = 70+separation*2;
+			    this.x_est[0] = 120+separation*2;
+			    this.x_est[1] = 120+separation*2;
+			    this.x_est[2] = 70+separation*2;
+			    this.x_nord[0] = 120+separation*2;
+			    this.x_nord[1] = 20+separation*2;
+			    this.x_nord[2] = 70+separation*2;
+			    this.x_west[0] = 20+separation*2;
+			    this.x_west[1] = 20+separation*2;
+			    this.x_west[2] = 70+separation*2;
+
+			    this.y_sud[0] = 120+separation;
+			    this.y_sud[1] = 120+separation;
+			    this.y_sud[2] = 70+separation;
+			    this.y_est[0] = 120+separation;
+			    this.y_est[1] = 20+separation;
+			    this.y_est[2] = 70+separation;
+			    this.y_nord[0] = 20+separation;
+			    this.y_nord[1] = 20+separation;
+			    this.y_nord[2] = 70+separation;
+			    this.y_west[0] = 20+separation;
+			    this.y_west[1] = 120+separation;
+			    this.y_west[2] = 70+separation;
+
+			    this.couleur[0] = "R";
+			    this.couleur[1] = "R";
+			    this.couleur[2] = "V";
+			    this.couleur[3] = "B";
+            }
+            else if(t == 1)
+            {
+                this.x_sud[0] = 20+separation*4;
+			    this.x_sud[1] = 120+separation*4;
+			    this.x_sud[2] = 70+separation*4;
+			    this.x_est[0] = 120+separation*4;
+			    this.x_est[1] = 120+separation*4;
+			    this.x_est[2] = 70+separation*4;
+			    this.x_nord[0] = 120+separation*4;
+			    this.x_nord[1] = 20+separation*4;
+			    this.x_nord[2] = 70+separation*4;
+			    this.x_west[0] = 20+separation*4;
+			    this.x_west[1] = 20+separation*4;
+			    this.x_west[2] = 70+separation*4;
+                
+			    this.y_sud[0] = 120+separation;
+			    this.y_sud[1] = 120+separation;
+			    this.y_sud[2] = 70+separation;
+			    this.y_est[0] = 120+separation;
+			    this.y_est[1] = 20+separation;
+			    this.y_est[2] = 70+separation;
+			    this.y_nord[0] = 20+separation;
+			    this.y_nord[1] = 20+separation;
+			    this.y_nord[2] = 70+separation;
+			    this.y_west[0] = 20+separation;
+			    this.y_west[1] = 120+separation;
+			    this.y_west[2] = 70+separation;
+
+			    this.couleur[0] = "N";
+			    this.couleur[1] = "R";
+			    this.couleur[2] = "N";
+			    this.couleur[3] = "N";
+            }
+            else if(t == 2)
+            {
+                this.x_sud[0] = 20;
+			    this.x_sud[1] = 120;
+			    this.x_sud[2] = 70;
+			    this.x_est[0] = 120;
+			    this.x_est[1] = 120;
+			    this.x_est[2] = 70;
+			    this.x_nord[0] = 120;
+			    this.x_nord[1] = 20;
+			    this.x_nord[2] = 70;
+			    this.x_west[0] = 20;
+			    this.x_west[1] = 20;
+			    this.x_west[2] = 70;
+
+			    this.y_sud[0] = 120+separation*2;
+			    this.y_sud[1] = 120+separation*2;
+			    this.y_sud[2] = 70+separation*2;
+			    this.y_est[0] = 120+separation*2;
+			    this.y_est[1] = 20+separation*2;
+			    this.y_est[2] = 70+separation*2;
+			    this.y_nord[0] = 20+separation*2;
+			    this.y_nord[1] = 20+separation*2;
+			    this.y_nord[2] = 70+separation*2;
+			    this.y_west[0] = 20+separation*2;
+			    this.y_west[1] = 120+separation*2;
+			    this.y_west[2] = 70+separation*2;
+
+			    this.couleur[0] = "R";
+			    this.couleur[1] = "B";
+			    this.couleur[2] = "V";
+			    this.couleur[3] = "V";
+            }
+		}
+		else if(id == 8)
+		{
+            if(t == 0)
+            {
+                this.x_sud[0] = 20+separation*3;
+			    this.x_sud[1] = 120+separation*3;
+			    this.x_sud[2] = 70+separation*3;
+			    this.x_est[0] = 120+separation*3;
+			    this.x_est[1] = 120+separation*3;
+			    this.x_est[2] = 70+separation*3;
+			    this.x_nord[0] = 120+separation*3;
+			    this.x_nord[1] = 20+separation*3;
+			    this.x_nord[2] = 70+separation*3;
+			    this.x_west[0] = 20+separation*3;
+			    this.x_west[1] = 20+separation*3;
+			    this.x_west[2] = 70+separation*3;
+
+			    this.y_sud[0] = 120+separation;
+			    this.y_sud[1] = 120+separation;
+			    this.y_sud[2] = 70+separation;
+			    this.y_est[0] = 120+separation;
+			    this.y_est[1] = 20+separation;
+			    this.y_est[2] = 70+separation;
+			    this.y_nord[0] = 20+separation;
+			    this.y_nord[1] = 20+separation;
+			    this.y_nord[2] = 70+separation;
+			    this.y_west[0] = 20+separation;
+			    this.y_west[1] = 120+separation;
+			    this.y_west[2] = 70+separation;
+
+			    this.couleur[0] = "R";
+			    this.couleur[1] = "B";
+			    this.couleur[2] = "B";
+			    this.couleur[3] = "N";
+            }
+            else if(t == 1)
+            {
+			    this.x_sud[0] = 20+separation*5;
+			    this.x_sud[1] = 120+separation*5;
+			    this.x_sud[2] = 70+separation*5;
+			    this.x_est[0] = 120+separation*5;
+			    this.x_est[1] = 120+separation*5;
+			    this.x_est[2] = 70+separation*5;
+			    this.x_nord[0] = 120+separation*5;
+			    this.x_nord[1] = 20+separation*5;
+			    this.x_nord[2] = 70+separation*5;
+			    this.x_west[0] = 20+separation*5;
+			    this.x_west[1] = 20+separation*5;
+			    this.x_west[2] = 70+separation*5;
+                
+			    this.y_sud[0] = 120+separation;
+			    this.y_sud[1] = 120+separation;
+			    this.y_sud[2] = 70+separation;
+			    this.y_est[0] = 120+separation;
+			    this.y_est[1] = 20+separation;
+			    this.y_est[2] = 70+separation;
+			    this.y_nord[0] = 20+separation;
+			    this.y_nord[1] = 20+separation;
+			    this.y_nord[2] = 70+separation;
+			    this.y_west[0] = 20+separation;
+			    this.y_west[1] = 120+separation;
+			    this.y_west[2] = 70+separation;
+
+			    this.couleur[0] = "R";
+			    this.couleur[1] = "B";
+			    this.couleur[2] = "V";
+			    this.couleur[3] = "R";
+            }
+            else if(t == 2)
+            {
+                this.x_sud[0] = 20+separation;
+			    this.x_sud[1] = 120+separation;
+			    this.x_sud[2] = 70+separation;
+			    this.x_est[0] = 120+separation;
+			    this.x_est[1] = 120+separation;
+			    this.x_est[2] = 70+separation;
+			    this.x_nord[0] = 120+separation;
+			    this.x_nord[1] = 20+separation;
+			    this.x_nord[2] = 70+separation;
+			    this.x_west[0] = 20+separation;
+			    this.x_west[1] = 20+separation;
+			    this.x_west[2] = 70+separation;
+
+			    this.y_sud[0] = 120+separation*2;
+			    this.y_sud[1] = 120+separation*2;
+			    this.y_sud[2] = 70+separation*2;
+			    this.y_est[0] = 120+separation*2;
+			    this.y_est[1] = 20+separation*2;
+			    this.y_est[2] = 70+separation*2;
+			    this.y_nord[0] = 20+separation*2;
+			    this.y_nord[1] = 20+separation*2;
+			    this.y_nord[2] = 70+separation*2;
+			    this.y_west[0] = 20+separation*2;
+			    this.y_west[1] = 120+separation*2;
+			    this.y_west[2] = 70+separation*2;
+
+			    this.couleur[0] = "N";
+			    this.couleur[1] = "R";
+			    this.couleur[2] = "B";
+			    this.couleur[3] = "N";
+            }
+		}
+		else if(id == 9)
+		{
+            if(t == 0)
+            {
+                this.x_sud[0] = 20;
+			    this.x_sud[1] = 120;
+			    this.x_sud[2] = 70;
+			    this.x_est[0] = 120;
+			    this.x_est[1] = 120;
+			    this.x_est[2] = 70;
+			    this.x_nord[0] = 120;
+			    this.x_nord[1] = 20;
+			    this.x_nord[2] = 70;
+			    this.x_west[0] = 20;
+			    this.x_west[1] = 20;
+			    this.x_west[2] = 70;
+
+			    this.y_sud[0] = 120+separation*2;
+			    this.y_sud[1] = 120+separation*2;
+			    this.y_sud[2] = 70+separation*2;
+			    this.y_est[0] = 120+separation*2;
+			    this.y_est[1] = 20+separation*2;
+			    this.y_est[2] = 70+separation*2;
+			    this.y_nord[0] = 20+separation*2;
+			    this.y_nord[1] = 20+separation*2;
+			    this.y_nord[2] = 70+separation*2;
+			    this.y_west[0] = 20+separation*2;
+			    this.y_west[1] = 120+separation*2;
+			    this.y_west[2] = 70+separation*2;
+
+			    this.couleur[0] = "B";
+			    this.couleur[1] = "R";
+			    this.couleur[2] = "N";
+			    this.couleur[3] = "V";
+            }
+            else if(t == 1)
+            {
+                this.x_sud[0] = 20;
+			    this.x_sud[1] = 120;
+			    this.x_sud[2] = 70;
+			    this.x_est[0] = 120;
+			    this.x_est[1] = 120;
+			    this.x_est[2] = 70;
+			    this.x_nord[0] = 120;
+			    this.x_nord[1] = 20;
+			    this.x_nord[2] = 70;
+			    this.x_west[0] = 20;
+			    this.x_west[1] = 20;
+			    this.x_west[2] = 70;
+
+			    this.y_sud[0] = 120+separation*2;
+			    this.y_sud[1] = 120+separation*2;
+			    this.y_sud[2] = 70+separation*2;
+			    this.y_est[0] = 120+separation*2;
+			    this.y_est[1] = 20+separation*2;
+			    this.y_est[2] = 70+separation*2;
+			    this.y_nord[0] = 20+separation*2;
+			    this.y_nord[1] = 20+separation*2;
+			    this.y_nord[2] = 70+separation*2;
+			    this.y_west[0] = 20+separation*2;
+			    this.y_west[1] = 120+separation*2;
+			    this.y_west[2] = 70+separation*2;
+
+			    this.couleur[0] = "V";
+			    this.couleur[1] = "R";
+			    this.couleur[2] = "B";
+			    this.couleur[3] = "V";
+            }
+            else if(t == 2)
+            {
+                this.x_sud[0] = 20+separation*2;
+			    this.x_sud[1] = 120+separation*2;
+			    this.x_sud[2] = 70+separation*2;
+			    this.x_est[0] = 120+separation*2;
+			    this.x_est[1] = 120+separation*2;
+			    this.x_est[2] = 70+separation*2;
+			    this.x_nord[0] = 120+separation*2;
+			    this.x_nord[1] = 20+separation*2;
+			    this.x_nord[2] = 70+separation*2;
+			    this.x_west[0] = 20+separation*2;
+			    this.x_west[1] = 20+separation*2;
+			    this.x_west[2] = 70+separation*2;
+
+			    this.y_sud[0] = 120+separation*2;
+			    this.y_sud[1] = 120+separation*2;
+			    this.y_sud[2] = 70+separation*2;
+			    this.y_est[0] = 120+separation*2;
+			    this.y_est[1] = 20+separation*2;
+			    this.y_est[2] = 70+separation*2;
+			    this.y_nord[0] = 20+separation*2;
+			    this.y_nord[1] = 20+separation*2;
+			    this.y_nord[2] = 70+separation*2;
+			    this.y_west[0] = 20+separation*2;
+			    this.y_west[1] = 120+separation*2;
+			    this.y_west[2] = 70+separation*2;
+
+			    this.couleur[0] = "V";
+			    this.couleur[1] = "R";
+			    this.couleur[2] = "V";
+			    this.couleur[3] = "B";
+            }
+		}
+		else if(id == 10)
+		{
+            if(t == 0)
+            {
+			    this.x_sud[0] = 20+separation;
+			    this.x_sud[1] = 120+separation;
+			    this.x_sud[2] = 70+separation;
+			    this.x_est[0] = 120+separation;
+			    this.x_est[1] = 120+separation;
+			    this.x_est[2] = 70+separation;
+			    this.x_nord[0] = 120+separation;
+			    this.x_nord[1] = 20+separation;
+			    this.x_nord[2] = 70+separation;
+			    this.x_west[0] = 20+separation;
+			    this.x_west[1] = 20+separation;
+			    this.x_west[2] = 70+separation;
+
+			    this.y_sud[0] = 120+separation*2;
+			    this.y_sud[1] = 120+separation*2;
+			    this.y_sud[2] = 70+separation*2;
+			    this.y_est[0] = 120+separation*2;
+			    this.y_est[1] = 20+separation*2;
+			    this.y_est[2] = 70+separation*2;
+			    this.y_nord[0] = 20+separation*2;
+			    this.y_nord[1] = 20+separation*2;
+			    this.y_nord[2] = 70+separation*2;
+			    this.y_west[0] = 20+separation*2;
+			    this.y_west[1] = 120+separation*2;
+			    this.y_west[2] = 70+separation*2;
+
+			    this.couleur[0] = "B";
+			    this.couleur[1] = "N";
+			    this.couleur[2] = "N";
+			    this.couleur[3] = "B";
+            }
+            else if(t == 1)
+            {
+			    this.x_sud[0] = 20+separation;
+			    this.x_sud[1] = 120+separation;
+			    this.x_sud[2] = 70+separation;
+			    this.x_est[0] = 120+separation;
+			    this.x_est[1] = 120+separation;
+			    this.x_est[2] = 70+separation;
+			    this.x_nord[0] = 120+separation;
+			    this.x_nord[1] = 20+separation;
+			    this.x_nord[2] = 70+separation;
+			    this.x_west[0] = 20+separation;
+			    this.x_west[1] = 20+separation;
+			    this.x_west[2] = 70+separation;
+                
+			    this.y_sud[0] = 120+separation*2;
+			    this.y_sud[1] = 120+separation*2;
+			    this.y_sud[2] = 70+separation*2;
+			    this.y_est[0] = 120+separation*2;
+			    this.y_est[1] = 20+separation*2;
+			    this.y_est[2] = 70+separation*2;
+			    this.y_nord[0] = 20+separation*2;
+			    this.y_nord[1] = 20+separation*2;
+			    this.y_nord[2] = 70+separation*2;
+			    this.y_west[0] = 20+separation*2;
+			    this.y_west[1] = 120+separation*2;
+			    this.y_west[2] = 70+separation*2;
+
+			    this.couleur[0] = "N";
+			    this.couleur[1] = "V";
+			    this.couleur[2] = "N";
+			    this.couleur[3] = "N";
+            }
+            else if(t == 2)
+            {
+                this.x_sud[0] = 20+separation*3;
+			    this.x_sud[1] = 120+separation*3;
+			    this.x_sud[2] = 70+separation*3;
+			    this.x_est[0] = 120+separation*3;
+			    this.x_est[1] = 120+separation*3;
+			    this.x_est[2] = 70+separation*3;
+			    this.x_nord[0] = 120+separation*3;
+			    this.x_nord[1] = 20+separation*3;
+			    this.x_nord[2] = 70+separation*3;
+			    this.x_west[0] = 20+separation*3;
+			    this.x_west[1] = 20+separation*3;
+			    this.x_west[2] = 70+separation*3;
+                
+			    this.y_sud[0] = 120+separation*2;
+			    this.y_sud[1] = 120+separation*2;
+			    this.y_sud[2] = 70+separation*2;
+			    this.y_est[0] = 120+separation*2;
+			    this.y_est[1] = 20+separation*2;
+			    this.y_est[2] = 70+separation*2;
+			    this.y_nord[0] = 20+separation*2;
+			    this.y_nord[1] = 20+separation*2;
+			    this.y_nord[2] = 70+separation*2;
+			    this.y_west[0] = 20+separation*2;
+			    this.y_west[1] = 120+separation*2;
+			    this.y_west[2] = 70+separation*2;
+
+			    this.couleur[0] = "V";
+			    this.couleur[1] = "V";
+			    this.couleur[2] = "B";
+			    this.couleur[3] = "R";
+            }
+		}
+		else if(id == 11)
+		{
+            if(t == 0)
+            {
+			    this.x_sud[0] = 20+separation*2;
+			    this.x_sud[1] = 120+separation*2;
+			    this.x_sud[2] = 70+separation*2;
+			    this.x_est[0] = 120+separation*2;
+			    this.x_est[1] = 120+separation*2;
+			    this.x_est[2] = 70+separation*2;
+			    this.x_nord[0] = 120+separation*2;
+			    this.x_nord[1] = 20+separation*2;
+			    this.x_nord[2] = 70+separation*2;
+			    this.x_west[0] = 20+separation*2;
+			    this.x_west[1] = 20+separation*2;
+			    this.x_west[2] = 70+separation*2;
+
+			    this.y_sud[0] = 120+separation*2;
+			    this.y_sud[1] = 120+separation*2;
+			    this.y_sud[2] = 70+separation*2;
+			    this.y_est[0] = 120+separation*2;
+			    this.y_est[1] = 20+separation*2;
+			    this.y_est[2] = 70+separation*2;
+			    this.y_nord[0] = 20+separation*2;
+			    this.y_nord[1] = 20+separation*2;
+			    this.y_nord[2] = 70+separation*2;
+			    this.y_west[0] = 20+separation*2;
+			    this.y_west[1] = 120+separation*2;
+			    this.y_west[2] = 70+separation*2;
+
+			    this.couleur[0] = "R";
+			    this.couleur[1] = "N";
+			    this.couleur[2] = "R";
+			    this.couleur[3] = "V";
+            }
+            else if(t == 1)
+            {
+			    this.x_sud[0] = 20+separation*2;
+			    this.x_sud[1] = 120+separation*2;
+			    this.x_sud[2] = 70+separation*2;
+			    this.x_est[0] = 120+separation*2;
+			    this.x_est[1] = 120+separation*2;
+			    this.x_est[2] = 70+separation*2;
+			    this.x_nord[0] = 120+separation*2;
+			    this.x_nord[1] = 20+separation*2;
+			    this.x_nord[2] = 70+separation*2;
+			    this.x_west[0] = 20+separation*2;
+			    this.x_west[1] = 20+separation*2;
+			    this.x_west[2] = 70+separation*2;
+
+			    this.y_sud[0] = 120+separation*2;
+			    this.y_sud[1] = 120+separation*2;
+			    this.y_sud[2] = 70+separation*2;
+			    this.y_est[0] = 120+separation*2;
+			    this.y_est[1] = 20+separation*2;
+			    this.y_est[2] = 70+separation*2;
+			    this.y_nord[0] = 20+separation*2;
+			    this.y_nord[1] = 20+separation*2;
+			    this.y_nord[2] = 70+separation*2;
+			    this.y_west[0] = 20+separation*2;
+			    this.y_west[1] = 120+separation*2;
+			    this.y_west[2] = 70+separation*2;
+
+			    this.couleur[0] = "B";
+			    this.couleur[1] = "V";
+			    this.couleur[2] = "R";
+			    this.couleur[3] = "R";
+            }
+            else if(t == 2)
+            {
+                this.x_sud[0] = 20+separation*4;
+			    this.x_sud[1] = 120+separation*4;
+			    this.x_sud[2] = 70+separation*4;
+			    this.x_est[0] = 120+separation*4;
+			    this.x_est[1] = 120+separation*4;
+			    this.x_est[2] = 70+separation*4;
+			    this.x_nord[0] = 120+separation*4;
+			    this.x_nord[1] = 20+separation*4;
+			    this.x_nord[2] = 70+separation*4;
+			    this.x_west[0] = 20+separation*4;
+			    this.x_west[1] = 20+separation*4;
+			    this.x_west[2] = 70+separation*4;
+
+			    this.y_sud[0] = 120+separation*2;
+			    this.y_sud[1] = 120+separation*2;
+			    this.y_sud[2] = 70+separation*2;
+			    this.y_est[0] = 120+separation*2;
+			    this.y_est[1] = 20+separation*2;
+			    this.y_est[2] = 70+separation*2;
+			    this.y_nord[0] = 20+separation*2;
+			    this.y_nord[1] = 20+separation*2;
+			    this.y_nord[2] = 70+separation*2;
+			    this.y_west[0] = 20+separation*2;
+			    this.y_west[1] = 120+separation*2;
+			    this.y_west[2] = 70+separation*2;
+
+			    this.couleur[0] = "B";
+			    this.couleur[1] = "N";
+			    this.couleur[2] = "V";
+			    this.couleur[3] = "N";
+            }
+		}
+		else if(id == 12)
+		{
+            if(t == 0)
+            {
+			    this.x_sud[0] = 20+separation*3;
+			    this.x_sud[1] = 120+separation*3;
+			    this.x_sud[2] = 70+separation*3;
+			    this.x_est[0] = 120+separation*3;
+			    this.x_est[1] = 120+separation*3;
+			    this.x_est[2] = 70+separation*3;
+			    this.x_nord[0] = 120+separation*3;
+			    this.x_nord[1] = 20+separation*3;
+			    this.x_nord[2] = 70+separation*3;
+			    this.x_west[0] = 20+separation*3;
+			    this.x_west[1] = 20+separation*3;
+			    this.x_west[2] = 70+separation*3;
+
+			    this.y_sud[0] = 120+separation*2;
+			    this.y_sud[1] = 120+separation*2;
+			    this.y_sud[2] = 70+separation*2;
+			    this.y_est[0] = 120+separation*2;
+			    this.y_est[1] = 20+separation*2;
+			    this.y_est[2] = 70+separation*2;
+			    this.y_nord[0] = 20+separation*2;
+			    this.y_nord[1] = 20+separation*2;
+			    this.y_nord[2] = 70+separation*2;
+			    this.y_west[0] = 20+separation*2;
+			    this.y_west[1] = 120+separation*2;
+			    this.y_west[2] = 70+separation*2;
+
+			    this.couleur[0] = "B";
+			    this.couleur[1] = "N";
+			    this.couleur[2] = "B";
+			    this.couleur[3] = "R";
+            }
+            else if(t == 1)
+            {
+			    this.x_sud[0] = 20+separation*3;
+			    this.x_sud[1] = 120+separation*3;
+			    this.x_sud[2] = 70+separation*3;
+			    this.x_est[0] = 120+separation*3;
+			    this.x_est[1] = 120+separation*3;
+			    this.x_est[2] = 70+separation*3;
+			    this.x_nord[0] = 120+separation*3;
+			    this.x_nord[1] = 20+separation*3;
+			    this.x_nord[2] = 70+separation*3;
+			    this.x_west[0] = 20+separation*3;
+			    this.x_west[1] = 20+separation*3;
+			    this.x_west[2] = 70+separation*3;
+
+			    this.y_sud[0] = 120+separation*2;
+			    this.y_sud[1] = 120+separation*2;
+			    this.y_sud[2] = 70+separation*2;
+			    this.y_est[0] = 120+separation*2;
+			    this.y_est[1] = 20+separation*2;
+			    this.y_est[2] = 70+separation*2;
+			    this.y_nord[0] = 20+separation*2;
+			    this.y_nord[1] = 20+separation*2;
+			    this.y_nord[2] = 70+separation*2;
+			    this.y_west[0] = 20+separation*2;
+			    this.y_west[1] = 120+separation*2;
+			    this.y_west[2] = 70+separation*2;
+
+			    this.couleur[0] = "N";
+			    this.couleur[1] = "B";
+			    this.couleur[2] = "N";
+			    this.couleur[3] = "N";
+            }
+            else if(t == 2)
+            {
+			    this.x_sud[0] = 20+separation*5;
+			    this.x_sud[1] = 120+separation*5;
+			    this.x_sud[2] = 70+separation*5;
+			    this.x_est[0] = 120+separation*5;
+			    this.x_est[1] = 120+separation*5;
+			    this.x_est[2] = 70+separation*5;
+			    this.x_nord[0] = 120+separation*5;
+			    this.x_nord[1] = 20+separation*5;
+			    this.x_nord[2] = 70+separation*5;
+			    this.x_west[0] = 20+separation*5;
+			    this.x_west[1] = 20+separation*5;
+			    this.x_west[2] = 70+separation*5;
+
+			    this.y_sud[0] = 120+separation*2;
+			    this.y_sud[1] = 120+separation*2;
+			    this.y_sud[2] = 70+separation*2;
+			    this.y_est[0] = 120+separation*2;
+			    this.y_est[1] = 20+separation*2;
+			    this.y_est[2] = 70+separation*2;
+			    this.y_nord[0] = 20+separation*2;
+			    this.y_nord[1] = 20+separation*2;
+			    this.y_nord[2] = 70+separation*2;
+			    this.y_west[0] = 20+separation*2;
+			    this.y_west[1] = 120+separation*2;
+			    this.y_west[2] = 70+separation*2;
+
+			    this.couleur[0] = "N";
+			    this.couleur[1] = "N";
+			    this.couleur[2] = "R";
+			    this.couleur[3] = "N";
+            }
+		}
+		else if(id == 13)
+		{
+            if(t == 0)
+            {
+			    this.x_sud[0] = 20;
+			    this.x_sud[1] = 120;
+			    this.x_sud[2] = 70;
+			    this.x_est[0] = 120;
+			    this.x_est[1] = 120;
+			    this.x_est[2] = 70;
+			    this.x_nord[0] = 120;
+			    this.x_nord[1] = 20;
+			    this.x_nord[2] = 70;
+			    this.x_west[0] = 20;
+			    this.x_west[1] = 20;
+			    this.x_west[2] = 70;
+
+			    this.y_sud[0] = 120+separation*3;
+			    this.y_sud[1] = 120+separation*3;
+			    this.y_sud[2] = 70+separation*3;
+			    this.y_est[0] = 120+separation*3;
+			    this.y_est[1] = 20+separation*3;
+			    this.y_est[2] = 70+separation*3;
+			    this.y_nord[0] = 20+separation*3;
+			    this.y_nord[1] = 20+separation*3;
+			    this.y_nord[2] = 70+separation*3;
+			    this.y_west[0] = 20+separation*3;
+			    this.y_west[1] = 120+separation*3;
+			    this.y_west[2] = 70+separation*3;
+
+			    this.couleur[0] = "B";
+			    this.couleur[1] = "N";
+			    this.couleur[2] = "V";
+			    this.couleur[3] = "N";
+            }
+            else if(t == 1)
+            {
+                this.x_sud[0] = 20+separation*4;
+			    this.x_sud[1] = 120+separation*4;
+			    this.x_sud[2] = 70+separation*4;
+			    this.x_est[0] = 120+separation*4;
+			    this.x_est[1] = 120+separation*4;
+			    this.x_est[2] = 70+separation*4;
+			    this.x_nord[0] = 120+separation*4;
+			    this.x_nord[1] = 20+separation*4;
+			    this.x_nord[2] = 70+separation*4;
+			    this.x_west[0] = 20+separation*4;
+			    this.x_west[1] = 20+separation*4;
+			    this.x_west[2] = 70+separation*4;
+                
+			    this.y_sud[0] = 120+separation*2;
+			    this.y_sud[1] = 120+separation*2;
+			    this.y_sud[2] = 70+separation*2;
+			    this.y_est[0] = 120+separation*2;
+			    this.y_est[1] = 20+separation*2;
+			    this.y_est[2] = 70+separation*2;
+			    this.y_nord[0] = 20+separation*2;
+			    this.y_nord[1] = 20+separation*2;
+			    this.y_nord[2] = 70+separation*2;
+			    this.y_west[0] = 20+separation*2;
+			    this.y_west[1] = 120+separation*2;
+			    this.y_west[2] = 70+separation*2;
+
+			    this.couleur[0] = "N";
+			    this.couleur[1] = "B";
+			    this.couleur[2] = "V";
+			    this.couleur[3] = "V";
+            }
+            else if(t == 2)
+            {
+                this.x_sud[0] = 20+separation;
+			    this.x_sud[1] = 120+separation;
+			    this.x_sud[2] = 70+separation;
+			    this.x_est[0] = 120+separation;
+			    this.x_est[1] = 120+separation;
+			    this.x_est[2] = 70+separation;
+			    this.x_nord[0] = 120+separation;
+			    this.x_nord[1] = 20+separation;
+			    this.x_nord[2] = 70+separation;
+			    this.x_west[0] = 20+separation;
+			    this.x_west[1] = 20+separation;
+			    this.x_west[2] = 70+separation;
+
+			    this.y_sud[0] = 120+separation*3;
+			    this.y_sud[1] = 120+separation*3;
+			    this.y_sud[2] = 70+separation*3;
+			    this.y_est[0] = 120+separation*3;
+			    this.y_est[1] = 20+separation*3;
+			    this.y_est[2] = 70+separation*3;
+			    this.y_nord[0] = 20+separation*3;
+			    this.y_nord[1] = 20+separation*3;
+			    this.y_nord[2] = 70+separation*3;
+			    this.y_west[0] = 20+separation*3;
+			    this.y_west[1] = 120+separation*3;
+			    this.y_west[2] = 70+separation*3;
+
+			    this.couleur[0] = "R";
+			    this.couleur[1] = "B";
+			    this.couleur[2] = "R";
+			    this.couleur[3] = "V";
+            }
+		}
+		else if(id == 14)
+		{
+            if(t == 0)
+            {
+			    this.x_sud[0] = 20+separation;
+			    this.x_sud[1] = 120+separation;
+			    this.x_sud[2] = 70+separation;
+			    this.x_est[0] = 120+separation;
+			    this.x_est[1] = 120+separation;
+			    this.x_est[2] = 70+separation;
+			    this.x_nord[0] = 120+separation;
+			    this.x_nord[1] = 20+separation;
+			    this.x_nord[2] = 70+separation;
+			    this.x_west[0] = 20+separation;
+			    this.x_west[1] = 20+separation;
+			    this.x_west[2] = 70+separation;
+
+			    this.y_sud[0] = 120+separation*3;
+			    this.y_sud[1] = 120+separation*3;
+			    this.y_sud[2] = 70+separation*3;
+			    this.y_est[0] = 120+separation*3;
+			    this.y_est[1] = 20+separation*3;
+			    this.y_est[2] = 70+separation*3;
+			    this.y_nord[0] = 20+separation*3;
+			    this.y_nord[1] = 20+separation*3;
+			    this.y_nord[2] = 70+separation*3;
+			    this.y_west[0] = 20+separation*3;
+			    this.y_west[1] = 120+separation*3;
+			    this.y_west[2] = 70+separation*3;
+
+			    this.couleur[0] = "N";
+			    this.couleur[1] = "V";
+			    this.couleur[2] = "B";
+			    this.couleur[3] = "B";
+            }
+            else if(t == 1)
+            {
+			    this.x_sud[0] = 20+separation*5;
+			    this.x_sud[1] = 120+separation*5;
+			    this.x_sud[2] = 70+separation*5;
+			    this.x_est[0] = 120+separation*5;
+			    this.x_est[1] = 120+separation*5;
+			    this.x_est[2] = 70+separation*5;
+			    this.x_nord[0] = 120+separation*5;
+			    this.x_nord[1] = 20+separation*5;
+			    this.x_nord[2] = 70+separation*5;
+			    this.x_west[0] = 20+separation*5;
+			    this.x_west[1] = 20+separation*5;
+			    this.x_west[2] = 70+separation*5;
+                
+			    this.y_sud[0] = 120+separation*2;
+			    this.y_sud[1] = 120+separation*2;
+			    this.y_sud[2] = 70+separation*2;
+			    this.y_est[0] = 120+separation*2;
+			    this.y_est[1] = 20+separation*2;
+			    this.y_est[2] = 70+separation*2;
+			    this.y_nord[0] = 20+separation*2;
+			    this.y_nord[1] = 20+separation*2;
+			    this.y_nord[2] = 70+separation*2;
+			    this.y_west[0] = 20+separation*2;
+			    this.y_west[1] = 120+separation*2;
+			    this.y_west[2] = 70+separation*2;
+
+			    this.couleur[0] = "N";
+			    this.couleur[1] = "N";
+			    this.couleur[2] = "B";
+			    this.couleur[3] = "N";
+            }
+            else if(t == 2)
+            {
+			    this.x_sud[0] = 20+separation*2;
+			    this.x_sud[1] = 120+separation*2;
+			    this.x_sud[2] = 70+separation*2;
+			    this.x_est[0] = 120+separation*2;
+			    this.x_est[1] = 120+separation*2;
+			    this.x_est[2] = 70+separation*2;
+			    this.x_nord[0] = 120+separation*2;
+			    this.x_nord[1] = 20+separation*2;
+			    this.x_nord[2] = 70+separation*2;
+			    this.x_west[0] = 20+separation*2;
+			    this.x_west[1] = 20+separation*2;
+			    this.x_west[2] = 70+separation*2;
+
+			    this.y_sud[0] = 120+separation*3;
+			    this.y_sud[1] = 120+separation*3;
+			    this.y_sud[2] = 70+separation*3;
+			    this.y_est[0] = 120+separation*3;
+			    this.y_est[1] = 20+separation*3;
+			    this.y_est[2] = 70+separation*3;
+			    this.y_nord[0] = 20+separation*3;
+			    this.y_nord[1] = 20+separation*3;
+			    this.y_nord[2] = 70+separation*3;
+			    this.y_west[0] = 20+separation*3;
+			    this.y_west[1] = 120+separation*3;
+			    this.y_west[2] = 70+separation*3;
+
+			    this.couleur[0] = "N";
+			    this.couleur[1] = "N";
+			    this.couleur[2] = "B";
+			    this.couleur[3] = "N";
+            }
+		}
+		else if(id == 15)
+		{
+            if(t == 0)
+            {
+			    this.x_sud[0] = 20+separation*2;
+			    this.x_sud[1] = 120+separation*2;
+			    this.x_sud[2] = 70+separation*2;
+			    this.x_est[0] = 120+separation*2;
+			    this.x_est[1] = 120+separation*2;
+			    this.x_est[2] = 70+separation*2;
+			    this.x_nord[0] = 120+separation*2;
+			    this.x_nord[1] = 20+separation*2;
+			    this.x_nord[2] = 70+separation*2;
+			    this.x_west[0] = 20+separation*2;
+			    this.x_west[1] = 20+separation*2;
+			    this.x_west[2] = 70+separation*2;
+
+			    this.y_sud[0] = 120+separation*3;
+			    this.y_sud[1] = 120+separation*3;
+			    this.y_sud[2] = 70+separation*3;
+			    this.y_est[0] = 120+separation*3;
+			    this.y_est[1] = 20+separation*3;
+			    this.y_est[2] = 70+separation*3;
+			    this.y_nord[0] = 20+separation*3;
+			    this.y_nord[1] = 20+separation*3;
+			    this.y_nord[2] = 70+separation*3;
+			    this.y_west[0] = 20+separation*3;
+			    this.y_west[1] = 120+separation*3;
+			    this.y_west[2] = 70+separation*3;
+			
+			    this.couleur[0] = "N";
+			    this.couleur[1] = "B";
+			    this.couleur[2] = "N";
+			    this.couleur[3] = "V";
+            }
+            else if(t == 1)
+            {
+			    this.x_sud[0] = 20+separation*2;
+			    this.x_sud[1] = 120+separation*2;
+			    this.x_sud[2] = 70+separation*2;
+			    this.x_est[0] = 120+separation*2;
+			    this.x_est[1] = 120+separation*2;
+			    this.x_est[2] = 70+separation*2;
+			    this.x_nord[0] = 120+separation*2;
+			    this.x_nord[1] = 20+separation*2;
+			    this.x_nord[2] = 70+separation*2;
+			    this.x_west[0] = 20+separation*2;
+			    this.x_west[1] = 20+separation*2;
+			    this.x_west[2] = 70+separation*2;
+
+			    this.y_sud[0] = 120+separation*3;
+			    this.y_sud[1] = 120+separation*3;
+			    this.y_sud[2] = 70+separation*3;
+			    this.y_est[0] = 120+separation*3;
+			    this.y_est[1] = 20+separation*3;
+			    this.y_est[2] = 70+separation*3;
+			    this.y_nord[0] = 20+separation*3;
+			    this.y_nord[1] = 20+separation*3;
+			    this.y_nord[2] = 70+separation*3;
+			    this.y_west[0] = 20+separation*3;
+			    this.y_west[1] = 120+separation*3;
+			    this.y_west[2] = 70+separation*3;
+			
+			    this.couleur[0] = "N";
+			    this.couleur[1] = "V";
+			    this.couleur[2] = "N";
+			    this.couleur[3] = "N";
+            }
+            else if(t == 2)
+            {
+			    this.x_sud[0] = 20+separation*3;
+			    this.x_sud[1] = 120+separation*3;
+			    this.x_sud[2] = 70+separation*3;
+			    this.x_est[0] = 120+separation*3;
+			    this.x_est[1] = 120+separation*3;
+			    this.x_est[2] = 70+separation*3;
+			    this.x_nord[0] = 120+separation*3;
+			    this.x_nord[1] = 20+separation*3;
+			    this.x_nord[2] = 70+separation*3;
+			    this.x_west[0] = 20+separation*3;
+			    this.x_west[1] = 20+separation*3;
+			    this.x_west[2] = 70+separation*3;
+
+			    this.y_sud[0] = 120+separation*3;
+			    this.y_sud[1] = 120+separation*3;
+			    this.y_sud[2] = 70+separation*3;
+			    this.y_est[0] = 120+separation*3;
+			    this.y_est[1] = 20+separation*3;
+			    this.y_est[2] = 70+separation*3;
+			    this.y_nord[0] = 20+separation*3;
+			    this.y_nord[1] = 20+separation*3;
+			    this.y_nord[2] = 70+separation*3;
+			    this.y_west[0] = 20+separation*3;
+			    this.y_west[1] = 120+separation*3;
+			    this.y_west[2] = 70+separation*3;
+			
+			    this.couleur[0] = "N";
+			    this.couleur[1] = "R";
+			    this.couleur[2] = "N";
+			    this.couleur[3] = "B";
+            }
+		}
+		else if(id == 16)
+		{
+            if(t == 0)
+            {
+                this.x_sud[0] = 20+separation*3;
+			    this.x_sud[1] = 120+separation*3;
+			    this.x_sud[2] = 70+separation*3;
+			    this.x_est[0] = 120+separation*3;
+			    this.x_est[1] = 120+separation*3;
+			    this.x_est[2] = 70+separation*3;
+			    this.x_nord[0] = 120+separation*3;
+			    this.x_nord[1] = 20+separation*3;
+			    this.x_nord[2] = 70+separation*3;
+			    this.x_west[0] = 20+separation*3;
+			    this.x_west[1] = 20+separation*3;
+			    this.x_west[2] = 70+separation*3;
+
+			    this.y_sud[0] = 120+separation*3;
+			    this.y_sud[1] = 120+separation*3;
+			    this.y_sud[2] = 70+separation*3;
+			    this.y_est[0] = 120+separation*3;
+			    this.y_est[1] = 20+separation*3;
+			    this.y_est[2] = 70+separation*3;
+			    this.y_nord[0] = 20+separation*3;
+			    this.y_nord[1] = 20+separation*3;
+			    this.y_nord[2] = 70+separation*3;
+			    this.y_west[0] = 20+separation*3;
+			    this.y_west[1] = 120+separation*3;
+			    this.y_west[2] = 70+separation*3;
+
+			    this.couleur[0] = "R";
+			    this.couleur[1] = "B";
+			    this.couleur[2] = "N";
+			    this.couleur[3] = "R";
+            }
+            else if(t == 1)
+            {
+                this.x_sud[0] = 20+separation*3;
+			    this.x_sud[1] = 120+separation*3;
+			    this.x_sud[2] = 70+separation*3;
+			    this.x_est[0] = 120+separation*3;
+			    this.x_est[1] = 120+separation*3;
+			    this.x_est[2] = 70+separation*3;
+			    this.x_nord[0] = 120+separation*3;
+			    this.x_nord[1] = 20+separation*3;
+			    this.x_nord[2] = 70+separation*3;
+			    this.x_west[0] = 20+separation*3;
+			    this.x_west[1] = 20+separation*3;
+			    this.x_west[2] = 70+separation*3;
+
+			    this.y_sud[0] = 120+separation*3;
+			    this.y_sud[1] = 120+separation*3;
+			    this.y_sud[2] = 70+separation*3;
+			    this.y_est[0] = 120+separation*3;
+			    this.y_est[1] = 20+separation*3;
+			    this.y_est[2] = 70+separation*3;
+			    this.y_nord[0] = 20+separation*3;
+			    this.y_nord[1] = 20+separation*3;
+			    this.y_nord[2] = 70+separation*3;
+			    this.y_west[0] = 20+separation*3;
+			    this.y_west[1] = 120+separation*3;
+			    this.y_west[2] = 70+separation*3;
+
+			    this.couleur[0] = "B";
+			    this.couleur[1] = "N";
+			    this.couleur[2] = "V";
+			    this.couleur[3] = "R";
+            }
+            else if(t == 2)
+            {
+                this.x_sud[0] = 20+separation*4;
+			    this.x_sud[1] = 120+separation*4;
+			    this.x_sud[2] = 70+separation*4;
+			    this.x_est[0] = 120+separation*4;
+			    this.x_est[1] = 120+separation*4;
+			    this.x_est[2] = 70+separation*4;
+			    this.x_nord[0] = 120+separation*4;
+			    this.x_nord[1] = 20+separation*4;
+			    this.x_nord[2] = 70+separation*4;
+			    this.x_west[0] = 20+separation*4;
+			    this.x_west[1] = 20+separation*4;
+			    this.x_west[2] = 70+separation*4;
+
+			    this.y_sud[0] = 120+separation*3;
+			    this.y_sud[1] = 120+separation*3;
+			    this.y_sud[2] = 70+separation*3;
+			    this.y_est[0] = 120+separation*3;
+			    this.y_est[1] = 20+separation*3;
+			    this.y_est[2] = 70+separation*3;
+			    this.y_nord[0] = 20+separation*3;
+			    this.y_nord[1] = 20+separation*3;
+			    this.y_nord[2] = 70+separation*3;
+			    this.y_west[0] = 20+separation*3;
+			    this.y_west[1] = 120+separation*3;
+			    this.y_west[2] = 70+separation*3;
+
+			    this.couleur[0] = "R";
+			    this.couleur[1] = "N";
+			    this.couleur[2] = "V";
+			    this.couleur[3] = "N";
+            }
+		}
+        else if(id == 17)
+		{
+            if(t == 2)
+            {
+			    this.x_sud[0] = 20+separation*2;
+			    this.x_sud[1] = 120+separation*2;
+			    this.x_sud[2] = 70+separation*2;
+			    this.x_est[0] = 120+separation*2;
+			    this.x_est[1] = 120+separation*2;
+			    this.x_est[2] = 70+separation*2;
+			    this.x_nord[0] = 120+separation*2;
+			    this.x_nord[1] = 20+separation*2;
+			    this.x_nord[2] = 70+separation*2;
+			    this.x_west[0] = 20+separation*2;
+			    this.x_west[1] = 20+separation*2;
+			    this.x_west[2] = 70+separation*2;
+
+			    this.y_sud[0] = 120+separation*4;
+			    this.y_sud[1] = 120+separation*4;
+			    this.y_sud[2] = 70+separation*4;
+			    this.y_est[0] = 120+separation*4;
+			    this.y_est[1] = 20+separation*4;
+			    this.y_est[2] = 70+separation*4;
+			    this.y_nord[0] = 20+separation*4;
+			    this.y_nord[1] = 20+separation*4;
+			    this.y_nord[2] = 70+separation*4;
+			    this.y_west[0] = 20+separation*4;
+			    this.y_west[1] = 120+separation*4;
+			    this.y_west[2] = 70+separation*4;
+
+			    this.couleur[0] = "N";
+			    this.couleur[1] = "B";
+			    this.couleur[2] = "N";
+			    this.couleur[3] = "V";
+            }
+		}
+        else if(id == 18)
+		{
+            if(t == 2)
+            {
+                this.x_sud[0] = 20+separation*3;
+			    this.x_sud[1] = 120+separation*3;
+			    this.x_sud[2] = 70+separation*3;
+			    this.x_est[0] = 120+separation*3;
+			    this.x_est[1] = 120+separation*3;
+			    this.x_est[2] = 70+separation*3;
+			    this.x_nord[0] = 120+separation*3;
+			    this.x_nord[1] = 20+separation*3;
+			    this.x_nord[2] = 70+separation*3;
+			    this.x_west[0] = 20+separation*3;
+			    this.x_west[1] = 20+separation*3;
+			    this.x_west[2] = 70+separation*3;
+                
+			    this.y_sud[0] = 120+separation*4;
+			    this.y_sud[1] = 120+separation*4;
+			    this.y_sud[2] = 70+separation*4;
+			    this.y_est[0] = 120+separation*4;
+			    this.y_est[1] = 20+separation*4;
+			    this.y_est[2] = 70+separation*4;
+			    this.y_nord[0] = 20+separation*4;
+			    this.y_nord[1] = 20+separation*4;
+			    this.y_nord[2] = 70+separation*4;
+			    this.y_west[0] = 20+separation*4;
+			    this.y_west[1] = 120+separation*4;
+			    this.y_west[2] = 70+separation*4;
+
+			    this.couleur[0] = "B";
+			    this.couleur[1] = "N";
+			    this.couleur[2] = "N";
+			    this.couleur[3] = "V";
+            }
+		}
 	}
 
 	public int getId() {
 		return id;
 	}
 
-
-	public void setId(int id) {
-		this.id = id;
+	public int[] getX_sud() {
+		return x_sud;
 	}
 
-
-	public int getType() {
-		return type;
+	public void setX_sud(int x_sud, int i) {
+		this.x_sud[i] = x_sud;
 	}
 
-
-	public void setType(int type) {
-		this.type = type;
+	public int[] getX_est() {
+		return x_est;
 	}
 
-
-	public int getN_face() {
-		return N_face;
+	public void setX_est(int x_est, int i) {
+		this.x_est[i] = x_est;
 	}
 
-
-	public void setN_face(int n_face) {
-		N_face = n_face;
+	public int[] getX_nord() {
+		return x_nord;
 	}
 
-
-	public int getO_face() {
-		return O_face;
+	public void setX_nord(int x_nord, int i) {
+		this.x_nord[i] = x_nord;
 	}
 
-
-	public void setO_face(int o_face) {
-		O_face = o_face;
+	public int[] getX_west() {
+		return x_west;
 	}
 
-
-	public int getS_face() {
-		return S_face;
+	public void setX_west(int x_west, int i) {
+		this.x_west[i] = x_west;
 	}
 
-
-	public void setS_face(int s_face) {
-		S_face = s_face;
+	public int[] getY_sud() {
+		return y_sud;
 	}
 
-
-	public int getE_face() {
-		return E_face;
+	public void setY_sud(int y_sud, int i) {
+		this.y_sud[i] = y_sud;
 	}
 
-
-	public void setE_face(int e_face) {
-		E_face = e_face;
+	public int[] getY_est() {
+		return y_est;
 	}
 
-
-	public int getOrientation() {
-		return orientation;
+	public void setY_est(int y_est, int i) {
+		this.y_est[i] = y_est;
 	}
 
-
-	public void setOrientation(int orientation) {
-		this.orientation = orientation;
+	public int[] getY_nord() {
+		return y_nord;
 	}
 
-
-	public int getPosx() {
-		return posx;
+	public void setY_nord(int y_nord, int i) {
+		this.y_nord[i] = y_nord;
 	}
 
-
-	public void setPosx(int posx) {
-		this.posx = posx;
+	public int[] getY_west() {
+		return y_west;
 	}
 
-
-	public int getPosy() {
-		return posy;
+	public void setY_west(int y_west, int i) {
+		this.y_west[i] = y_west;
 	}
 
-
-	public void setPosy(int posy) {
-		this.posy = posy;
-	}
-
-
-	public static void main2(String[] args) throws Exception{
-		BufferedReader br = new BufferedReader(new FileReader("src/main/java/Pieces/pieces.csv"));
-		String ligne = null;
-		while ((ligne = br.readLine()) != null){
-			// Retourner la ligne dans un tableau
-			String[] data = ligne.split(";\n");
-
-			// Afficher le contenu du tableau
-			for (String val : data){
-				if(val=="p"){
-					val = "!";
-				}
-				else
-					System.out.println(val);
-			}
-		}
-		br.close();
+	public String getCouleur(int i) {
+		return couleur[i];
 	}
 	
-	public static void main(String[] args) {
-		
-		Plateau p=new Plateau("src/main/java/Pieces/pieces.csv");
-		
+	public String[] getCouleur() {
+		return couleur;
 	}
+
+	public void setCouleur(String[] couleur) {
+		this.couleur = couleur;
+	}
+	
+	public void setCouleur(String couleur, int i) {
+		this.couleur[i] = couleur;
+	}
+
 }

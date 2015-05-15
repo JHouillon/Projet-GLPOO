@@ -53,7 +53,7 @@ public class CsvRW {
 						{
 							final Pieces piece = ligneToPiece(ligne);
 							System.out.println("Pièce i="+i);
-							System.out.println("N="+piece.getN_face()+"/ E="+piece.getE_face()+"/ S="+piece.getS_face()+"/ O="+piece.getO_face());
+							//System.out.println("N="+piece.getN_face()+"/ E="+piece.getE_face()+"/ S="+piece.getS_face()+"/ O="+piece.getO_face());
 							pieces_tab[i]=piece;
 							System.out.println("pièce intégrée au tableau");
 							
@@ -91,7 +91,7 @@ public class CsvRW {
     	String[] data = ligne.split(";");
     	System.out.println("Lecture de la pièce");
     	
-        final Pieces piece = new Pieces(Integer.parseInt(data[0]),Integer.parseInt(data[1]),Integer.parseInt(data[2]),Integer.parseInt(data[3]),0,0);
+        final Pieces piece = null;// = new Pieces(Integer.parseInt(data[0]),Integer.parseInt(data[1]),Integer.parseInt(data[2]),Integer.parseInt(data[3]),0,0);
 
         return piece;
     }
