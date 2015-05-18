@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.io.File;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -43,8 +45,6 @@ public class Plateau {
 	static PointerInfo pointer;
 	static Point location;
 	static Graphics g;
-	
-	static JButton quitter = new JButton("Quitter");
 	
 	static int faceAvant;
 	
@@ -119,6 +119,8 @@ public class Plateau {
 
 			public void mouseClicked(MouseEvent e)
 			{
+				// TODO Auto-generated method stub
+				
 				click++;
 				nb.setText("Votre nombre de coup : "+click);
 				
@@ -556,18 +558,22 @@ public class Plateau {
 			}
 
 			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
 				
 			}
 
 			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
 				
 			}
 
 			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
 				
 			}
 
 			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
 				
 			}
 		});
@@ -628,16 +634,8 @@ public class Plateau {
 		bck.setText("Retourner au menu");
 		bck.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
-				new ModeDeJeu(name, fenetre);
-				plateau.setVisible(false);
-				//new ModeDeJeu(Lancement.name, null);
-			}
-		});
-		
-
-		quitter.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent arg0) {
 				System.exit(0);
+				//new ModeDeJeu(Lancement.name, null);
 			}
 		});
 		
@@ -650,7 +648,6 @@ public class Plateau {
 		panelDroite.add(coups);
 		panelDroite.add(retry);
 		panelDroite.add(back);
-		panelDroite.add(quitter);
 		
 		plateau.add(pieces);
 		plateau.add(panelDroite);

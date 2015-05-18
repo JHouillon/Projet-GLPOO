@@ -1,28 +1,24 @@
 package Plateau;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Container;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSlider;
-import javax.swing.JSplitPane;
-import javax.swing.TransferHandler;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 public class ModeDeJeu {
 
@@ -38,18 +34,23 @@ public class ModeDeJeu {
 	static JPanel pan = new JPanel();
 	static JPanel pan1 = new JPanel();
 	static JPanel pan2 = new JPanel();
+	static JPanel pan01 = new JPanel();
+	static JPanel pan02 = new JPanel();
+	static JPanel pan03 = new JPanel();
 	static JLabel titre = new JLabel();
 	static JLabel plateau = new JLabel();
 	static JEditorPane edit = new JEditorPane();
 	static ButtonGroup choix = new ButtonGroup();
-	static JRadioButton plateau_carre = new JRadioButton();
-	static JRadioButton plateau_triangle = new JRadioButton();
-	static JRadioButton plateau_losange = new JRadioButton();
+	static JRadioButton plateau_carre = new JRadioButton("Carré : 4x4");
+	static JRadioButton plateau_autre = new JRadioButton("Croix : 6x4");
+	static JRadioButton plateau_losange = new JRadioButton("Losange : 5x5");
 	static JButton valider = new JButton("Jouer");
+	static JButton retour = new JButton("Retour");
+	static JButton quitter = new JButton("Quitter");
 	static JSlider niveau = new JSlider(JSlider.HORIZONTAL,1,4,2);
-	static Container contenu = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
-	static Container contenu1 = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
-	
+	static ImageIcon iCarre = new ImageIcon(new ImageIcon("src/main/java/Plateau/img01.jpg").getImage().getScaledInstance(80,80,Image.SCALE_DEFAULT));
+	static ImageIcon iAutre = new ImageIcon(new ImageIcon("src/main/java/Plateau/img03.jpg").getImage().getScaledInstance(100,100,Image.SCALE_DEFAULT));
+	static ImageIcon iLos = new ImageIcon(new ImageIcon("src/main/java/Plateau/img02.jpg").getImage().getScaledInstance(100,100,Image.SCALE_DEFAULT));
 	static String name;
 	static JFrame mdj;
 	static int n = 1;
@@ -62,6 +63,10 @@ public class ModeDeJeu {
 	 */
 	
 	public ModeDeJeu(final String name, final JFrame mdj){
+		
+		pan.removeAll();
+		pan1.removeAll();
+		pan2.removeAll();
 		ModeDeJeu.name = name;
 		ModeDeJeu.mdj = mdj;
 		
@@ -70,11 +75,35 @@ public class ModeDeJeu {
 		valider.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				//nom = name.getText();
-				String[] args = null;
-				Plateau jeu = new Plateau(name, mdj, n);
+				if(plateau_carre.isSelected()){
+						n = 0;
+				}
+				else if(plateau_autre.isSelected()){
+						n = 1;
+				}					
+				else if(plateau_losange.isSelected()){
+						n = 2;
+				}
+				new Plateau(name, mdj, n);
 				pan.setVisible(false);
 			}
 		});
+		
+		retour.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				new PageLancement();
+				pan2.setVisible(false);
+				mdj.dispose();
+				PageLancement.Lancement();
+			}
+		});
+		
+		quitter.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
+		
 	}
 	
 	/**
@@ -87,57 +116,58 @@ public class ModeDeJeu {
 		// Contenu du premier panneau : Récupération du nom du joueur
 		// Et affichage
 		pan.setBorder(BorderFactory.createTitledBorder(""));
-		plateau.setText("Bonjour "+name+" !");
+		pan.setMaximumSize(new Dimension((mdj.getWidth()),(mdj.getHeight())/8));
 		
-		plateau.setTransferHandler(new TransferHandler("text"));
-		plateau.addMouseListener(new MouseAdapter(){
-			public void mousePressed(MouseEvent e){
-				JComponent lab = (JComponent)e.getSource();
-				TransferHandler handle = lab.getTransferHandler();
-				handle.exportAsDrag(lab,e,TransferHandler.COPY);
-			}
-		});
-		pan.add(plateau);
+		JLabel bjr = new JLabel("Bonjour "+name+" !");
+		bjr.setFont(new Font("Arial",Font.PLAIN,42));
+		
+		pan.add(bjr);
 		
 		// Contenu du second panneau : Sélection du choix du plateau
 		pan1.setBorder(BorderFactory.createTitledBorder("Choix du plateau et de la difficulté"));
 		pan1.setLayout(new BoxLayout(pan1, BoxLayout.Y_AXIS));
-		
-		titre.setText("Choix de la difficulté");
-		niveau.setPaintTicks(true);
-		niveau.setBackground(Color.ORANGE);
-		niveau.addChangeListener(new ChangeListener(){
-			public void stateChanged(ChangeEvent arg0) {
-				if(niveau.getValue()<=1){
-					n = 0;
-					niveau.setBackground(Color.YELLOW);
-					titre.setText("Carré : 4x4");
-				}					
-				else if(niveau.getValue()<=2 && niveau.getValue()>1){
-					n = 1;
-					niveau.setBackground(Color.ORANGE);
-					titre.setText("Autre : 6x4");
-				}					
-				else{
-					n = 2;
-					niveau.setBackground(Color.RED);
-					titre.setText("Losange : 5x5");
-				}
-					
-			}
-		});
 
-		pan1.add(titre);
-		pan1.add(niveau);
-		pan1.add(valider);
+		choix.add(plateau_carre);
+		choix.add(plateau_autre);
+		choix.add(plateau_losange);
+		
+		pan01.setLayout(new BoxLayout(pan01,BoxLayout.X_AXIS));
+		pan02.setLayout(new BoxLayout(pan02,BoxLayout.X_AXIS));
+		pan03.setLayout(new BoxLayout(pan03,BoxLayout.X_AXIS));
+		
+		pan01.add(plateau_carre);
+		pan01.add(new JLabel(iCarre));
+		pan02.add(plateau_autre);
+		pan02.add(new JLabel(iAutre));
+		pan03.add(plateau_losange);
+		pan03.add(new JLabel(iLos));
+		
+		pan2.setLayout(new BoxLayout(pan2,BoxLayout.Y_AXIS));
 		
 		// Ajout des panneaux dans un conteneur (2 composants MAXIMUM par conteneur)
-		contenu.add(pan);
-		contenu.add(pan1);
+		pan2.add(pan);
+		pan.setAlignmentX(Component.CENTER_ALIGNMENT);
+		pan1.add(pan01);
+		pan01.setAlignmentX(Component.CENTER_ALIGNMENT);
+		pan1.add(pan02);
+		pan02.setAlignmentX(Component.CENTER_ALIGNMENT);
+		pan1.add(pan03);
+		pan03.setAlignmentX(Component.CENTER_ALIGNMENT);
+		pan1.add(new JLabel("\n\n"));
+		pan2.add(pan1);
+		retour.setAlignmentX(Component.CENTER_ALIGNMENT);
+		pan2.add(valider);
+		valider.setAlignmentX(Component.CENTER_ALIGNMENT);
+		pan2.add(new JLabel(" "));
+		pan2.add(retour);
+		retour.setAlignmentX(Component.CENTER_ALIGNMENT);
+		pan2.add(new JLabel(" "));
+		pan2.add(quitter);
+		quitter.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		// Ajout du conteneur dans la fenêtre pour l'affichage
 		mdj.getContentPane().setLayout(new BorderLayout());
-		mdj.getContentPane().add(contenu);
+		mdj.getContentPane().add(pan2);
 		mdj.setVisible(true);
 	}
 

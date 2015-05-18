@@ -47,48 +47,48 @@ public class CsvRW {
 					ligne = br.readLine(); // on ignore les premières lignes
 				}
 	       
-				try {
-	        	
-						while ((ligne = br.readLine()) != null)
-						{
-							final Pieces piece = ligneToPiece(ligne);
-							System.out.println("Pièce i="+i);
-							//System.out.println("N="+piece.getN_face()+"/ E="+piece.getE_face()+"/ S="+piece.getS_face()+"/ O="+piece.getO_face());
-							pieces_tab[i]=piece;
-							System.out.println("pièce intégrée au tableau");
-							
-							i++;
-						}
-					} catch (IOException e) {
-												// TODO Auto-generated catch block
-												e.printStackTrace();
-											}
+				try
+				{
+					while ((ligne = br.readLine()) != null)
+					{
+						final Pieces piece = ligneToPiece(ligne);
+						System.out.println("Pièce i="+i);
+						//System.out.println("N="+piece.getN_face()+"/ E="+piece.getE_face()+"/ S="+piece.getS_face()+"/ O="+piece.getO_face());
+						pieces_tab[i]=piece;
+						System.out.println("pièce intégrée au tableau");
+						
+						i++;
+					}
+				}
+				catch (IOException e)
+				{
+					e.printStackTrace();
+				}
 	        
-				try {
-					
-						br.close();
-						System.out.println("BufferedReader fermé");
-					
-					} catch (IOException e) {
-												// TODO Auto-generated catch block
-												e.printStackTrace();
-											}
-	       
-	        } catch (FileNotFoundException e) {
-												// TODO Auto-generated catch block
-												e.printStackTrace();
-											} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
+				try
+				{
+					br.close();
+					System.out.println("BufferedReader fermé");
+				}
+				catch (IOException e)
+				{
+					e.printStackTrace();
+				}
+	        }
+        catch (FileNotFoundException e)
+        {
+			e.printStackTrace();
+		}
+        catch (IOException e)
+        {
+			e.printStackTrace();
+		}
         	return pieces_tab;
-        	
     }
 
     private static Pieces ligneToPiece(String ligne) {
 
-    	String[] data = ligne.split(";");
+    	ligne.split(";");
     	System.out.println("Lecture de la pièce");
     	
         final Pieces piece = null;// = new Pieces(Integer.parseInt(data[0]),Integer.parseInt(data[1]),Integer.parseInt(data[2]),Integer.parseInt(data[3]),0,0);

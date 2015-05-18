@@ -42,7 +42,13 @@ public class Menu extends JMenuBar{
 		    fichierMenu.insertSeparator(1);
 		    fichierMenu.add(item);
 		    item = new JMenuItem("Quitter");
-		    item.addActionListener(afficherMenuListener);
+		    item.addActionListener(new ActionListener(){
+
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					System.exit(0);
+				}
+		    });
 		    fichierMenu.add(item);
 
 		    // Création du menu Editer

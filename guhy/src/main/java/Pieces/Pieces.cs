@@ -1,5 +1,10 @@
 package Pieces;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+
+import Plateau.Plateau;
+
 public class Pieces {
 	
 	private int id;
@@ -19,7 +24,6 @@ public class Pieces {
 	
 	public Pieces(int id, int t)
 	{
-		this.id = id;
 		if(id == 1)
 		{
             if(t == 0)
@@ -594,7 +598,7 @@ public class Pieces {
 			    this.y_west[2] = 70+separation;
 			
 			    this.couleur[0] = "N";
-			    this.couleur[1] = "B";
+			    this.couleur[1] = "R";
 			    this.couleur[2] = "V";
 			    this.couleur[3] = "B";
             }
